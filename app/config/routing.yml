@@ -1,0 +1,4 @@
+b55_yarg:
+    resource: "@B55YargBundle/Resources/config/routing.yml"
+    prefix:   /
+
