@@ -1,0 +1,3 @@
+b55_yarg_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: B55YargBundle:Default:index }
