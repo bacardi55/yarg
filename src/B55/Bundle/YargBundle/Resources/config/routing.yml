@@ -1,3 +1,18 @@
-b55_yarg_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: B55YargBundle:Default:index }
+#b55_yarg_cv_all:
+#    pattern: /api/v1/resume
+#    defaults: { _controller: B55YargBundle:Yarg:all, _format: ~ }
+#    requirements:
+#        method: GET
+#
+#b55_yarg_cv_get:
+#    pattern: /api/v1/resumes/{id}
+#    defaults: { _controller: B55YargBundle:Yarg:get, _format: ~ }
+#    requirements:
+#        method: GET
+#        id: "\d+"
+
+cvs:
+    type:     rest
+    resource: B55\YargBundle\Controller\CvsController
+    name_prefix: api/v1/
+
