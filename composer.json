@@ -1,11 +1,31 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "Yarg",
     "license": "MIT",
-    "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "type": "app",
+    "description": "Yarg: Yet Another Resume Builder",
     "autoload": {
         "psr-0": { "": "src/" }
     },
+    "authors": [
+      {
+        "name": "Nils Adermann",
+        "email": "naderman@naderman.de",
+        "homepage": "http://www.naderman.de"
+      }
+    ],
+    "repositories": [
+      {
+        "type": "package",
+        "package": {
+          "name": "jquery/jquery",
+          "version": "1.9.1",
+          "dist": {
+            "url": "http://code.jquery.com/jquery-1.9.1.js",
+            "type": "file"
+          }
+        }
+      }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.3.*",
@@ -20,11 +40,23 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/rest-bundle": "dev-master",
+        "friendsofsymfony/rest": "1.0.*-dev",
         "nelmio/api-doc-bundle": "dev-master",
-        "jms/serializer-bundle": "0.12.*"
+        "jms/serializer-bundle": "0.12.*",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "braincrafted/bootstrap-bundle": "dev-master",
+        "twitter/bootstrap": "2.3.*",
+        "jquery/jquery": "1.9.*"
     },
     "require-dev": {
-      "phpspec/phpspec": "2.0.*@dev"
+      "doctrine/doctrine-fixtures-bundle": "dev-master",
+      "behat/behat": "2.4.*@stable",
+      "behat/symfony2-extension": "*",
+      "behat/mink-extension": "*",
+      "behat/mink-browserkit-driver": "*@stable",
+      "behat/mink-zombie-driver": "*@stable",
+      "leafo/lessphp": "0.4.0",
+      "phpunit/phpunit": "3.7.*"
     },
     "scripts": {
         "post-install-cmd": [
@@ -51,9 +83,6 @@
         "symfony-web-dir": "web",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        },
-        "branch-alias": {
-            "dev-master": "2.3-dev"
         }
     }
 }
