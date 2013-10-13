@@ -1,0 +1,9 @@
+body {
+  padding-top: 60px;
+}
+
+.yarg_login_form,
+.yarg_edit_profile_form {
+  width: 300px;
+  margin: auto;
+}

@@ -1,0 +1,10 @@
+yarg:
+    homepage: Homepage
+    my_yarg:
+        welcome: Welcome!
+        no_cv: You have no Cv.
+        create_a_cv: You can create your 1st Cv by clicking the button below.
+        new_cv_link: Start a Cv
+        your_cvs: Your Cv(s):
+        edit_profile: Edit your profile
+        my_yarg_link: My Yarg

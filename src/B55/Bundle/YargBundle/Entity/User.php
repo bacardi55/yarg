@@ -2,15 +2,17 @@
 
 namespace B55\Bundle\YargBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
  *
- * @ORM\Table()
+ * @ORM\Table(name="yarg_user")
  * @ORM\Entity
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer
@@ -19,21 +21,23 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Cv", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Cv", mappedBy="user", cascade={"persist", "remove"})
      */
     protected $cvs;
 
     /**
-     * @ORM\OneToMany(targetEntity="Information", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Information", mappedBy="user", cascade={"persist", "remove"})
      */
     protected $informations;
 
     public function __construct()
     {
         $this->cvs = new ArrayCollection();
+
+        parent::__construct();
     }
 
 
@@ -89,7 +93,7 @@ class User
     public function addInformation(\B55\Bundle\YargBundle\Entity\Information $informations)
     {
         $this->informations[] = $informations;
-    
+
         return $this;
     }
 
@@ -106,10 +110,15 @@ class User
     /**
      * Get informations
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getInformations()
     {
         return $this->informations;
+    }
+
+    public function hasCv()
+    {
+        return (count($this->cvs));
     }
 }

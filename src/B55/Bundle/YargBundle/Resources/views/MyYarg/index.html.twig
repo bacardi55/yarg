@@ -1,0 +1,23 @@
+{% extends 'B55YargBundle::layout.html.twig' %}
+{% set active = 'my_yarg' %}
+
+{% block content %}
+  <h2>{{ 'yarg.my_yarg.welcome'|trans }} {{ app.user.username }}</h2>
+  {% if app.user.hasCv %}
+    <h3>{{ 'yarg.my_yarg.your_cvs'}}</h3>
+    <ul class="yarg_cv_list">
+      {% for cv in app.user.cvs %}
+        <li>{{ cv.title }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p id="yarg_no_cv">{{ 'yarg.my_yarg.no_cv'|trans }}</p>
+  {% endif %}
+
+  <p>{{ 'yarg.my_yarg.create_a_cv'|trans }}</p>
+  <p><a href="{{ path('yarg_myyarg_new_cv')}}">
+    <button id="yarg_add_cv" class="btn btn-primary">
+      {{ 'yarg.my_yarg.new_cv_link'|trans }}
+    </button>
+  </a></p>
+{% endblock %}

@@ -32,14 +32,14 @@ class Cv
     /**
      * @var string
      *
-     * @ORM\Column(name="catch", type="string", length=255)
+     * @ORM\Column(name="catch", type="string", length=255, nullable=true)
      */
     private $catch;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -181,14 +181,14 @@ class Cv
     public function setUser(\B55\Bundle\YargBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return \B55\Bundle\YargBundle\Entity\User 
+     * @return \B55\Bundle\YargBundle\Entity\User
      */
     public function getUser()
     {

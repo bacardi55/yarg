@@ -1,0 +1,51 @@
+{% set active = active|default(null) %}
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container" id="yarg_menu">
+            <a class="brand" href="{{ path('yarg_index') }}">Yarg</a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li {% if 'homepage' == active %}class="active"{% endif %}><a href="{{ path('yarg_index') }}">{{ 'yarg.homepage'|trans }}</a></li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li{% if 'my_yarg' == active %}class="active"{% endif %}><a href="{{ path('yarg_myyarg') }}"></a><li>
+                    {% endif %}
+                </ul>
+                <ul class="nav pull-right">
+                    <li class="dropdown{% if 'account' == active %} active{% endif %}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {{ app.user.username }}
+                            {% else %}
+                                Account
+                            {% endif %}
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <li><a href="{{ path('yarg_myyarg') }}">{{ 'yarg.my_yarg.my_yarg_link'|trans}}</a></li>
+                                <li class="divider"></li>
+                                {% if app.user.hasCv %}
+                                    <li><a href="{{ path ('yarg_myyarg') }}">{{ 'yarg.my_yarg.your_cvs'|trans}}</a></li>
+                                    {% for cv in app.user.cvs %}
+                                        <li><a href="#">{{ cv.title|slice(0, 10) }}</a></li>
+                                    {% endfor %}
+                                    <li class="divider"></li>
+                                {% endif %}
+                                <li><a id="create_cv" href="{{ path('yarg_myyarg_new_cv') }}">{{ 'yarg.my_yarg.new_cv_link'|trans }}</a></li>
+                                <li class="divider"></li>
+                                <li><a id="edit_profile" href="{{ path('fos_user_profile_edit') }}">{{ 'yarg.my_yarg.edit_profile'|trans }}</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ path('fos_user_security_logout') }}">
+                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                </a></li>
+                            {% else %}
+                                <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                            {% endif %}
+                        </ul>
+
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>

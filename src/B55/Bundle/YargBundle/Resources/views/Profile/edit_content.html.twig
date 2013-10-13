@@ -1,0 +1,12 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="yarg_edit_profile_form">
+  <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit yarg_edit_profile_form">
+      {{ form_widget(form) }}
+      <div>
+          <div class="form-actions">
+              <input class="btn btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+          </div>
+      </div>
+  </form>
+</div>

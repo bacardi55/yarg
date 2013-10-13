@@ -1,0 +1,52 @@
+{% trans_default_domain 'B55YargBundle' %}
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <title>{% block title%}{{ 'yarg.homepage'|trans }}{% endblock %}</title>
+
+    {% block meta %}
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <meta name="viewport" content="width=device-width">
+      <meta charset="UTF-8" />
+    {% endblock %}
+
+    {% block stylesheets %}
+      {% stylesheets 'bundles/b55yarg/css/*' filter='cssrewrite' %}
+          <link rel="stylesheet" href="{{ asset_url }}" />
+      {% endstylesheets %}
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+    {% include 'B55YargBundle::menu.html.twig' with {'active': active|default(null)} %}
+
+    <div id="main" role="main" class="container">
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for key, message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message|trans({}, 'FOSUserBundle') }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% block fos_user_content %} {% endblock fos_user_content %}
+        {% block content %} {% endblock %}
+    </div>
+
+    {% block javascripts %}
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
+      <script src="{{ asset('js/bootstrap.js') }}"></script>
+    {% endblock %}
+</body>
+</html>
+

@@ -8,8 +8,10 @@ use B55\YargBundle\Repository\CvRepository;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class CvsController extends Controller
+class ApiController extends Controller
 {
+    private $cvRepository;
+
     /**
      * @Rest\View
      */
@@ -29,6 +31,7 @@ class CvsController extends Controller
      */
     public function getCvAction($slug)
     {
+      die('here');
     }
 }
 
