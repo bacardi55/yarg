@@ -7,7 +7,7 @@
     <h3>{{ 'yarg.my_yarg.your_cvs'}}</h3>
     <ul class="yarg_cv_list">
       {% for cv in app.user.cvs %}
-        <li>{{ cv.title }}</li>
+        <li>{{ cv.title }} - <a href="#"><i class="icon-trash"></i></a></li>
       {% endfor %}
     </ul>
   {% else %}
@@ -16,7 +16,7 @@
 
   <p>{{ 'yarg.my_yarg.create_a_cv'|trans }}</p>
   <p><a href="{{ path('yarg_myyarg_new_cv')}}">
-    <button id="yarg_add_cv" class="btn btn-primary">
+    <button id="yarg_add_cv" class="btn btn-primary"><i class="icon-plus icon-white"></i>
       {{ 'yarg.my_yarg.new_cv_link'|trans }}
     </button>
   </a></p>
