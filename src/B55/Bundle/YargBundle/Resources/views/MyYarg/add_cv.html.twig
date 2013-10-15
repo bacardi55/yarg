@@ -1,0 +1,14 @@
+{% extends 'B55YargBundle::layout.html.twig' %}
+{% set active = 'my_yarg' %}
+
+{% block content %}
+  <div class="yarg-form">
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+
+    <div class="form-actions">
+      <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'yarg.cv.submit'|trans }}" />
+    </div>
+  </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,13 @@
+default:
+  extensions:
+    Behat\Symfony2Extension\Extension:
+      mink_driver: true
+      kernel:
+        env: test
+        debug: true
+    Behat\MinkExtension\Extension:
+      default_session: symfony2
+      base_url: http://yarg.dev/app_dev.php
+
+mink:
+    show_cmd: firefox %s

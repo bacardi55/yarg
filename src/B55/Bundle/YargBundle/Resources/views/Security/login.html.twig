@@ -1,11 +1,9 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
-
 {% set active = "account" %}
-
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-  <div class=yarg_login_form>
+  <div class=yarg-form>
     {% if error %}
         <div>{{ error|trans }}</div>
     {% endif %}

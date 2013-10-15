@@ -17,18 +17,21 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             // Doctrine:
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             // Sensio:
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             // FOS:
             new FOS\RestBundle\FOSRestBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             // JMS:
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            // BC:
+            new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
             // B55:
             new B55\Bundle\YargBundle\B55YargBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

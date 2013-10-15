@@ -1,5 +1,11 @@
 yarg:
+    title: Yarg - Yet Another Resume Generator
     homepage: Homepage
+    cv:
+        title: Cv title
+        description: Cv description
+        catch: Cv catch phrase
+        submit: Create this Cv!
     my_yarg:
         welcome: Welcome!
         no_cv: You have no Cv.
@@ -8,3 +14,4 @@ yarg:
         your_cvs: Your Cv(s):
         edit_profile: Edit your profile
         my_yarg_link: My Yarg
+        your_cvs: Your Cv(s):

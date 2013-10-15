@@ -22,12 +22,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <li><a href="{{ path('yarg_myyarg') }}">{{ 'yarg.my_yarg.my_yarg_link'|trans}}</a></li>
+                                <li><a href="{{ path('yarg_myyarg') }}">{{ 'yarg.my_yarg.my_yarg_link'|trans }}</a></li>
                                 <li class="divider"></li>
                                 {% if app.user.hasCv %}
-                                    <li><a href="{{ path ('yarg_myyarg') }}">{{ 'yarg.my_yarg.your_cvs'|trans}}</a></li>
+                                    <li><a href="{{ path ('yarg_myyarg') }}">{{ 'yarg.my_yarg.your_cvs'|trans }}</a></li>
                                     {% for cv in app.user.cvs %}
-                                        <li><a href="#">{{ cv.title|slice(0, 10) }}</a></li>
+                                        <li><a href="#">> {{ cv.title|slice(0, 10) }}</a></li>
                                     {% endfor %}
                                     <li class="divider"></li>
                                 {% endif %}
