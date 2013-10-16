@@ -1,0 +1,13 @@
+{% set active = "account" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+  <div class="yarg-form">
+    <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+        {{ form_widget(form) }}
+        <div class="form-actions">
+            <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}" />
+        </div>
+    </form>
+  </div>
+{% endblock %}

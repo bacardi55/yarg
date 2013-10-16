@@ -19,8 +19,6 @@ yarg_myyarg_new_cv:
     pattern: /my-yarg/add/cv
     defaults: { _controller: B55YargBundle:MyYarg:addCv }
 
-yarg_list_cv:
-    pattern: /my-cvs
-    defaults: { _controller: B55YargBundle:Index:list }
-    requirements:
-        method: GET
+yarg_myyarg_show_cv:
+    pattern: /my-yarg/cv/{slug}
+    defaults: { _controller: B55YargBundle:MyYarg:showCv }

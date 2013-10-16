@@ -8,9 +8,9 @@
     },
     "authors": [
       {
-        "name": "Nils Adermann",
-        "email": "naderman@naderman.de",
-        "homepage": "http://www.naderman.de"
+        "name": "Raphael Khaiat (bacardi55)",
+        "email": "raphael@khaiat.org",
+        "homepage": "https://bacardi55.org"
       }
     ],
     "repositories": [
@@ -44,6 +44,7 @@
         "nelmio/api-doc-bundle": "dev-master",
         "jms/serializer-bundle": "0.12.*",
         "friendsofsymfony/user-bundle": "~2.0@dev",
+        "stof/doctrine-extensions-bundle": "~1.1@dev",
         "braincrafted/bootstrap-bundle": "dev-master",
         "twitter/bootstrap": "2.3.*",
         "jquery/jquery": "1.9.*"

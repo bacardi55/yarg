@@ -27,6 +27,8 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             // BC:
             new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
+            // Stof:
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             // B55:
             new B55\Bundle\YargBundle\B55YargBundle(),
         );

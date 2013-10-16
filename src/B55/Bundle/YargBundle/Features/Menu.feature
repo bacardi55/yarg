@@ -1,4 +1,4 @@
-@menu
+@yarg @menu
 Feature: Menu
   In order to navigate in yarg
   As a user (anonymous or yarg user)

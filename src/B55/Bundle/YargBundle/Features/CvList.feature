@@ -1,4 +1,4 @@
-@cv
+@yarg @myyarg @cv @see
 Feature: CV list
   In order to see my CV
   As a Yarg User
@@ -28,3 +28,7 @@ Feature: CV list
       | raphael CV 2 |
     Then I see "2" CV
 
+  Scenario: I want to see my cv "raphael CV" details
+    Given I have a Cv "raphael CV"
+    Then I open my Cv "raphael CV"
+    Then I am on "/en/my-yarg/raphael-cv"

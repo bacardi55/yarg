@@ -79,6 +79,8 @@ class FeatureContext extends RawMinkContext
             $user->setEmail($row['email']);
             $user->setPlainPassword($row['pass']);
             $user->setEnabled(true);
+            $user->setCreated(new \Datetime());
+            $user->setUpdated(new \Datetime());
 
             $userManager->updateUser($user);
         }
@@ -96,7 +98,6 @@ class FeatureContext extends RawMinkContext
             $this->kernel->getContainer()->get('security.context')->getToken()->getUser()
         );
     }
-
 
     /**
      * @Given /^I am logged in as "([^"]*)"$/
@@ -192,6 +193,8 @@ class FeatureContext extends RawMinkContext
         $cv = new Cv();
         $cv->setTitle($arg1);
         $cv->setUser($user);
+        $cv->setCreated(new \Datetime());
+        $cv->setUpdated(new \Datetime());
 
         $manager = $this->kernel->getContainer()->get('doctrine')->getManager();
         $manager = $manager->persist($cv);
@@ -269,5 +272,39 @@ class FeatureContext extends RawMinkContext
         $menu = $this->getSession()->getPage()->findById('yarg_menu');
 
         assertContains(substr($arg1, 0, 10), $menu->getText());
+    }
+    /**
+     * @Then /^I should see a "([^"]*)" button$/
+     */
+    public function iShouldSeeAButton($arg1)
+    {
+        $button = $this->getSession()->getPage()->findById($arg1)->getAttribute('href');
+        assertEquals(
+            $this->kernel->getContainer()->get('router')->generate('yarg_myyarg_new_cv'),
+            $button
+        );
+    }
+
+    /**
+     * @Given /^I should see a create cv form$/
+     */
+    public function iShouldSeeACreateCvForm()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then /^I open my Cv "([^"]*)"$/
+     */
+    public function iOpenMyCv($arg1)
+    {
+        $link = $this->getSession()->getPage()->find('css', 'ul.yarg_cv_list')->findLink($arg1);
+        $href = $link->getAttribute('href');
+        $link->click();
+
+        assertRegExp(
+            '#' . $href . "$#",
+            $this->getSession()->getCurrentUrl()
+        );
     }
 }
