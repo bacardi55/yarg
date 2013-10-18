@@ -8,6 +8,9 @@
 /bin/
 /composer.phar
 
+# doctrine temp files
+*php~
+
 # vim
 *.swp
 *.swo
