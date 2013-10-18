@@ -4,30 +4,21 @@ namespace B55\Bundle\YargBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class CvForm extends AbstractType
+class InformationForm extends AbstractType
 {
   /**
    * {@inheritdoc}
    */
   public function buildForm(FormBuilderInterface $builder, array $options) {
-    $builder->add('title', 'text', array('label' => 'yarg.cv.title'));
-    $builder->add(
-      'description',
-      'text',
-      array('label' => 'yarg.cv.description', 'required' => false)
-    );
-    $builder->add(
-      'catch',
-      'text',
-      array('label' => 'yarg.cv.catch', 'required' => false)
-    );
+    $builder->add('title', 'text', array('label' => 'yarg.cv.category.information.title'));
+    $builder->add('value', 'textarea', array('label' => 'yarg.cv.category.information.value'));
   }
 
   /**
    * {@inheritdoc}
    */
   public function getName(){
-    return 'Cv';
+    return 'Information';
   }
 
   /**
@@ -35,7 +26,9 @@ class CvForm extends AbstractType
    */
   public function getDefaultOptions(array $options){
     return array(
-      'data_class' => 'Bacardi55\CvgeneratorBundle\Entity\Cv',
+      'data_class' => 'Bacardi55\CvgeneratorBundle\Entity\Information',
     );
   }
 }
+
+

@@ -32,3 +32,7 @@ Feature: CV list
     Given I have a Cv "raphael CV"
     Then I open my Cv "raphael CV"
     Then I am on "/en/my-yarg/raphael-cv"
+
+# delete cv
+# published cv url
+# unpublish cv no url

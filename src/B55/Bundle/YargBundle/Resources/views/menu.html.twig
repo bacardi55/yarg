@@ -26,15 +26,15 @@
                                 <li><a href="{{ path('yarg_myyarg') }}"><i class="icon-home"></i> {{ 'yarg.my_yarg.my_yarg_link'|trans }}</a></li>
                                 <li class="divider"></li>
                                 {% if app.user.hasCv %}
-                                    <li><a href="{{ path ('yarg_myyarg') }}"><i class="icon-list"></i> {{ 'yarg.my_yarg.your_cvs'|trans }}</a></li>
+                                    <li>    {{ 'yarg.my_yarg.cv.your_cvs'|trans }}</li>
                                     {% for cv in app.user.cvs %}
                                         <li><a href="#">> {{ cv.title|slice(0, 20) }} <i class="icon-edit"></i></a></li>
                                     {% endfor %}
                                     <li class="divider"></li>
                                 {% endif %}
-                                <li><a id="create_cv" href="{{ path('yarg_myyarg_new_cv') }}"><i class="icon-plus"></i> {{ 'yarg.my_yarg.new_cv_link'|trans }}</a></li>
+                                <li><a id="create_cv" href="{{ path('yarg_myyarg_new_cv') }}"><i class="icon-plus"></i> {{ 'yarg.my_yarg.cv.new_link'|trans }}</a></li>
                                 <li class="divider"></li>
-                                <li><a id="edit_profile" href="{{ path('fos_user_profile_edit') }}"><i class="icon-edit"></i> {{ 'yarg.my_yarg.edit_profile'|trans }}</a></li>
+                                <li><a id="edit_profile" href="{{ path('fos_user_profile_edit') }}"><i class="icon-edit"></i> {{ 'yarg.my_yarg.profile.edit'|trans }}</a></li>
                                 <li class="divider"></li>
                                 <li><a href="{{ path('fos_user_security_logout') }}">
                                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}

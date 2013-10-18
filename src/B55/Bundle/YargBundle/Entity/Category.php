@@ -2,7 +2,10 @@
 
 namespace B55\Bundle\YargBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Category
@@ -24,6 +27,7 @@ class Category
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=55)
      */
     private $name;
@@ -31,7 +35,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -40,7 +44,7 @@ class Category
      *
      * @ORM\Column(name="weight", type="integer")
      */
-    private $weight;
+    private $weight = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity="Cv", inversedBy="categories")
@@ -55,12 +59,12 @@ class Category
     protected $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent", cascade={"persist", "remove"})
      */
     protected $children;
 
     /**
-     * @ORM\OneToMany(targetEntity="Information", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Information", mappedBy="category", cascade={"persist", "remove"})
      */
     protected $informations;
 
@@ -133,7 +137,7 @@ class Category
      * @param integer $weight
      * @return Category
      */
-    public function setWeight($weight)
+    public function setWeight($weight = 0)
     {
         $this->weight = $weight;
 
@@ -238,7 +242,7 @@ class Category
     public function addInformation(\B55\Bundle\YargBundle\Entity\Information $informations)
     {
         $this->informations[] = $informations;
-    
+
         return $this;
     }
 
@@ -255,7 +259,7 @@ class Category
     /**
      * Get informations
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getInformations()
     {

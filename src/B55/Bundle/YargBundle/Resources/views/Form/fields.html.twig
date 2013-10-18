@@ -5,6 +5,9 @@
             {{ form_label(form) }}
             {{ form_errors(form) }}
             {{ form_widget(form) }}
+            {% if required %}
+                <span class="required" title="This field is required"> *</span>
+            {% endif %}
         </div>
     </div>
 {% endspaceless %}

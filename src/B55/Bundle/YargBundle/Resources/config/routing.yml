@@ -17,8 +17,34 @@ yarg_myyarg:
 
 yarg_myyarg_new_cv:
     pattern: /my-yarg/add/cv
-    defaults: { _controller: B55YargBundle:MyYarg:addCv }
+    defaults: { _controller: B55YargBundle:Cvs:add }
 
 yarg_myyarg_show_cv:
     pattern: /my-yarg/cv/{slug}
-    defaults: { _controller: B55YargBundle:MyYarg:showCv }
+    defaults: { _controller: B55YargBundle:Cvs:show }
+
+yarg_myyarg_delete_cv:
+    pattern: /my-yarg/cv/{slug}/delete
+    defaults: { _controller: B55YargBundle:Cvs:delete }
+
+yarg_show_public_cv:
+    pattern: /cv/{user_slug}/{cv_slug}
+    defaults: { _controller: B55YargBundle:Cvs:showPublic }
+
+yarg_myyarg_edit_cv:
+    pattern: /my-yarg/cv/{slug}/edit
+    defaults: { _controller: B55YargBundle:Cvs:edit }
+
+yarg_myyarg_add_category:
+    pattern: /my-yarg/cv/{slug}/category/add/{parent}
+    defaults: { _controller: B55YargBundle:Categories:add, parent: null }
+    requirements:
+        parent: \d+
+
+yarg_myyarg_add_category_info:
+    pattern: /my-yarg/cv/{slug}/category/{category_id}/add/info
+    defaults: { _controller: B55YargBundle:Informations:addToCategory}
+
+yarg_myyarg_add_user_info:
+    pattern: /my-yarg/{slug}/info/add
+    defaults: { _controller: B55YargBundle:Informations:addToUser}

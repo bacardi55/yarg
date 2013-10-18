@@ -9,6 +9,17 @@
     <div class="form-actions">
       <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'yarg.cv.submit'|trans }}" />
     </div>
-  </div>
     {{ form_end(form) }}
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript">
+    var translations = {
+      'title': "{{ 'yarg.my_yarg.cv.help.title'|trans }}",
+      'description': "{{ 'yarg.my_yarg.cv.help.description'|trans }}",
+      'catch': "{{ 'yarg.my_yarg.cv.help.catch'|trans }}"
+    }
+  </script>
+  {{ parent() }}
 {% endblock %}

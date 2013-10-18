@@ -3,21 +3,73 @@
 
 {% block content %}
   <h2>{{ 'yarg.my_yarg.welcome'|trans }} {{ app.user.username }}</h2>
-  {% if app.user.hasCv %}
-    <h3>{{ 'yarg.my_yarg.your_cvs'}}</h3>
-    <ul class="yarg_cv_list">
-      {% for cv in app.user.cvs %}
-        <li><a href="{{ path('yarg_myyarg_show_cv', {"slug": cv.slug}) }}">{{ cv.title }}</a> - <a href="#"><i class="icon-trash"></i></a></li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p id="yarg_no_cv">{{ 'yarg.my_yarg.no_cv'|trans }}</p>
-  {% endif %}
+  <div class="row">
+    <div class="span5 well">
+      <h3>{{ 'yarg.my_yarg.profile.show'|trans }}</h3>
+      <div>
+        <blockquote><p>{{ 'yarg.my_yarg.profile.intro'|trans }}</p></blockquote>
+        <strong>{{ 'yarg.my_yarg.user.username' | trans }}</strong>: {{ app.user.username }}
+        <br/>
+        <strong>{{ 'yarg.my_yarg.user.email' | trans }}</strong>: {{ app.user.email }}
 
-  <p>{{ 'yarg.my_yarg.create_a_cv'|trans }}</p>
-  <p><a id="yarg_add_cv" href="{{ path('yarg_myyarg_new_cv')}}">
-    <button name = "yarg_add_cv" class="btn btn-primary"><i class="icon-plus icon-white"></i>
-      {{ 'yarg.my_yarg.new_cv_link'|trans }}
-    </button>
-  </a></p>
+        <p><br/><br/>
+          <a id="edit_profile" href="{{ path('fos_user_profile_edit') }}">
+            <button name="yarg_edit_profile" class="btn btn-primary">
+              <i class="icon-edit icon-white"></i>
+              {{ 'yarg.my_yarg.profile.edit'|trans }}
+            </button>
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div class="span5 well">
+      {% if app.user.hasCv %}
+        <h3>{{ 'yarg.my_yarg.cv.your_cvs'|trans }}</h3>
+        <blockquote><p>{{ 'yarg.my_yarg.cv.intro'|trans }}</p></blockquote>
+        <ul class="yarg_cv_list">
+          {% for cv in app.user.cvs %}
+            <li>
+              <a href="{{ path('yarg_myyarg_show_cv', {"slug": cv.slug}) }}">
+                {{ cv.title }}
+              </a>
+              ({{ cv.updated|date("m/d/Y") }})
+              - <a href="{{ path('yarg_myyarg_delete_cv', {'slug': cv.slug}) }}">
+                <i class="icon-trash"></i>
+              </a>
+              {% if cv.published %}
+                <span><i class="icon-globe"> </i></span>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p id="yarg_no_cv">{{ 'yarg.my_yarg.cv.none'|trans }}</p>
+      {% endif %}
+
+      <p>{{ 'yarg.my_yarg.cv.create'|trans }}</p>
+      <p><a id="yarg_add_cv" href="{{ path('yarg_myyarg_new_cv')}}">
+        <button name = "yarg_add_cv" class="btn btn-primary"><i class="icon-plus icon-white"></i>
+          {{ 'yarg.my_yarg.cv.new_link'|trans }}
+        </button>
+      </a></p>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="span5 well">
+      <h3>{{ 'yarg.my_yarg.user.informations.your_info'|trans }}</h3>
+      <div>
+        <blockquote><p>{{ 'yarg.my_yarg.user.informations.intro'|trans }}</p></blockquote>
+        <p><br/><br/>
+          <a id="user_add_info" href="{{ path('fos_user_profile_edit') }}">
+            <button class="btn btn-primary">
+              <i class="icon-plus icon-white"></i>
+              {{ 'yarg.my_yarg.user.informations.add_link'|trans }}
+            </button>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>{# row #}
 {% endblock %}

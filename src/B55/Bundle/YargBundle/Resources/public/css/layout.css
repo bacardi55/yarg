@@ -7,3 +7,18 @@ body {
   width: 300px;
   margin: auto;
 }
+
+.view_cv h3 {
+  border-bottom: 2px solid black;
+}
+
+.view_cv .catch {
+  text-align:center;
+}
+
+/* debug:
+.view_cv div {
+  border: 1px solid black;
+}
+*/
+

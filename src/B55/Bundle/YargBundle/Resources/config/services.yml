@@ -2,6 +2,8 @@ parameters:
 #    b55_yarg.example.class: B55\Bundle\YargBundle\Example
 
 services:
-#    b55_yarg.example:
-#        class: %b55_yarg.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    b55_yarg.password_resetting:
+        class: B55\Bundle\YargBundle\EventListener\ProfileEditListener
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_subscriber }

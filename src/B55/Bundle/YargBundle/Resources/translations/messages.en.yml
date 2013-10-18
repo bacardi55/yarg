@@ -8,10 +8,28 @@ yarg:
         submit: Create this Cv!
     my_yarg:
         welcome: Welcome!
-        no_cv: You have no Cv.
-        create_a_cv: You can create your 1st Cv by clicking the button below.
-        new_cv_link: Start a Cv
-        your_cvs: Your Cv(s):
-        edit_profile: Edit your profile
+        cv:
+            intro: This is basic list of your Cv(s). Click the block title to have a detailled view.
+            none: You have no Cv.
+            create: You can create a new Cv by clicking the button below.
+            new_link: Start a Cv
+            your_cvs: Your Cv(s):
+            created:
+                success: Your Cv has been created successfully.
+            last_update: Last update:
+            category:
+                add_link: Add a category
+                add_info_link: Add an information
+                add_subcat_link: Add a sub category
+        profile:
+            intro: These are your authentication informations. They are *not* used in any of your Cvs.
+            edit: Edit your profile
+            show: Your profile:
+        user:
+            username: Username
+            email: Email
+            informations:
+              intro: Your user informations will be displayed on the top left of each of your Cv. This is the place to add stuff like your name, address, email, …
+              your_info: Your general Cv informations:
+              add_link: Add an informations
         my_yarg_link: My Yarg
-

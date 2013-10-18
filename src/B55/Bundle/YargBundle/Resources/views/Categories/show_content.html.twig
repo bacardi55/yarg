@@ -1,0 +1,50 @@
+{% if is_sub_cat %}
+  <h4>{{ category.name }}</h4>
+{% else %}
+  <h3>{{ category.name }}</h3>
+{% endif %}
+
+{# Category Informations #}
+{% for info in category.informations %}
+  <div class="span2">
+    {{ info.title }}
+  </div>
+  <div class="span{% if is_sub_cat %}4{% else %}6{% endif %} offset1">
+    {{ info.value|nl2br }}
+  </div>
+{% endfor %}
+
+
+{# Create actions #}
+<div class="span7 offset{% if is_sub_cat %}3{% else %}1{% endif %}">
+  <br/><br/>
+  {# Create info #}
+  <div class="pull-left">
+    <a href="{{ path('yarg_myyarg_add_category_info', {'slug': cv.slug, 'category_id': category.id}) }}" data-target="#yargAddModal" role="button" class="yargCreatemodal btn btn-primary" data-toggle="modal" data-title="{{ 'yarg.my_yarg.cv.category.add_info_link'|trans }}">
+      <i class="icon-white icon-plus"></i>
+      {{ 'yarg.my_yarg.cv.category.add_info_link'|trans }}
+    </a>
+  </div>
+
+  {% if is_sub_cat == false %}
+    {# Create subcategory #}
+    <div class="pull-right">
+      <a href="{{ path('yarg_myyarg_add_category', {'slug': cv.slug, 'parent': category.id}) }}" data-target="#yargAddModal" role="button" class="yargCreatemodal btn btn-primary" data-toggle="modal" data-title="{{ 'yarg.my_yarg.cv.category.add_subcat_link'|trans }}">
+        <i class="icon-white icon-plus"></i>
+        {{ 'yarg.my_yarg.cv.category.add_subcat_link'|trans }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+
+{# Subcategory #}
+{% for subcat in category.children %}
+  <div class="span8 offset1">
+    <div class="row">
+      {% include 'B55YargBundle:Categories:show_content.html.twig' with {'category': subcat, 'is_sub_cat': true} %}
+    </div>
+  </div>
+{% endfor %}
+
+

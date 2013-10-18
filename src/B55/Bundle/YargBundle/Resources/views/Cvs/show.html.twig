@@ -1,0 +1,46 @@
+{% extends 'B55YargBundle::layout.html.twig' %}
+{% set active = 'my_yarg' %}
+
+{% block content %}
+  <div class="row view_cv">
+    {# User infos #}
+    <div class="span10 offset1">
+      {{ app.user.username }}
+    </div>
+    <div class="span12 catch">
+        {{ cv.catch }}
+    </div>
+  </div>
+  <div class="row view_cv">
+      {% for category in cv.categories %}
+        {% if category.parent is null %}
+          <div class="span10 offset1">
+            {% include 'B55YargBundle:Categories:show_content.html.twig' with {'slug': cv.slug, 'category_id': category.id, 'is_sub_cat': false} %}
+          </div>
+        {% endif %}
+      {% endfor %}
+      <div class="span5 offset5">
+      <br /><br />
+        <a href="{{ path('yarg_myyarg_add_category', {'slug': cv.slug}) }}" data-target="#yargAddModal" role="button" class="yargCreatemodal btn btn-primary" data-toggle="modal" data-title="{{ 'yarg.my_yarg.cv.category.add_link'|trans }}">
+          <i class="icon-white icon-plus"></i>
+          {{ 'yarg.my_yarg.cv.category.add_link'|trans }}
+        </a>
+      </div>
+  </div>
+
+
+  {# Modal #}
+  <div id="yargAddModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Add</h3>
+    </div>
+    <div class="modal-body">
+      {{ 'yarg_myyarg_loading'|trans }}…
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary save">Save changes</button>
+    </div>
+  </div>
+{% endblock %}

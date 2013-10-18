@@ -1,6 +1,7 @@
 <?php
-
 namespace B55\Bundle\YargBundle\Entity;
+
+use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -26,6 +27,7 @@ class Cv
 
     /**
      * @var string
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="title", type="string", length=55)
      */
@@ -44,6 +46,13 @@ class Cv
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published = 0;
 
     /**
      * @var datetime $created
@@ -68,7 +77,7 @@ class Cv
     private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="cv")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="cv", cascade={"persist", "remove"})
      */
     protected $categories;
 
@@ -250,14 +259,14 @@ class Cv
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -273,17 +282,40 @@ class Cv
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     * @return Cv
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
     }
 }

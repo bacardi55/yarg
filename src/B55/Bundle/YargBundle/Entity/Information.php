@@ -2,6 +2,8 @@
 
 namespace B55\Bundle\YargBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,6 +25,7 @@ class Information
 
     /**
      * @var string
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="title", type="string", length=255)
      */
@@ -30,6 +33,7 @@ class Information
 
     /**
      * @var string
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="value", type="string", length=255)
      */
@@ -40,7 +44,7 @@ class Information
      *
      * @ORM\Column(name="weight", type="integer")
      */
-    private $weight;
+    private $weight = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="informations")
@@ -165,14 +169,14 @@ class Information
     public function setUser(\B55\Bundle\YargBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return \B55\Bundle\YargBundle\Entity\User 
+     * @return \B55\Bundle\YargBundle\Entity\User
      */
     public function getUser()
     {
