@@ -28,8 +28,4 @@ yarg:
         user:
             username: Username
             email: Email
-            informations:
-              intro: Your user informations will be displayed on the top left of each of your Cv. This is the place to add stuff like your name, address, email, …
-              your_info: Your general Cv informations:
-              add_link: Add an informations
         my_yarg_link: My Yarg

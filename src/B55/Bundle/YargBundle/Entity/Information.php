@@ -53,10 +53,10 @@ class Information
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="informations")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Cv", inversedBy="informations")
+     * @ORM\JoinColumn(name="cv_id", referencedColumnName="id")
      */
-    private $user;
+    private $cv;
 
     /**
      * Get id
@@ -181,5 +181,28 @@ class Information
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set cv
+     *
+     * @param \B55\Bundle\YargBundle\Entity\Cv $cv
+     * @return Information
+     */
+    public function setCv(\B55\Bundle\YargBundle\Entity\Cv $cv = null)
+    {
+        $this->cv = $cv;
+    
+        return $this;
+    }
+
+    /**
+     * Get cv
+     *
+     * @return \B55\Bundle\YargBundle\Entity\Cv 
+     */
+    public function getCv()
+    {
+        return $this->cv;
     }
 }

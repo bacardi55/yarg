@@ -82,14 +82,69 @@ class Cv
     protected $categories;
 
     /**
+     * @ORM\OneToMany(targetEntity="Information", mappedBy="cv", cascade={"persist", "remove"})
+     */
+    protected $informations;
+
+    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="cvs")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
 
+    /**
+     * Find a category (via its id) in this Cv.
+     *
+     * @param integer $needle
+     *   The Category id needed.
+     *
+     * @return Mixed
+     *   The Category matching the given id if found.
+     *   False otherwise.
+     */
+    public function findCategory($needle)
+    {
+        foreach ($this->categories as $category) {
+            if ($category->getId() == $needle) {
+                return $category;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Find an information (via its id) in this Cv.
+     *
+     * @param integer $needle
+     *   The Information id needed.
+     *
+     * @return Mixed
+     *   The Information matching the given id if found.
+     *   False otherwise.
+     */
+    public function findInformation($needle)
+    {
+        foreach ($this->categories as $category) {
+            if ($information = $category->findInformation($needle)) {
+                return $information;
+            }
+
+            foreach ($category->getChildren() as $subcategory) {
+                if ($information = $subcategory->findInformation($needle)) {
+                    return $information;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->informations = new ArrayCollection();
     }
 
     /**
@@ -317,5 +372,38 @@ class Cv
     public function getPublished()
     {
         return $this->published;
+    }
+
+    /**
+     * Add informations
+     *
+     * @param \B55\Bundle\YargBundle\Entity\Information $informations
+     * @return Cv
+     */
+    public function addInformation(\B55\Bundle\YargBundle\Entity\Information $informations)
+    {
+        $this->informations[] = $informations;
+
+        return $this;
+    }
+
+    /**
+     * Remove informations
+     *
+     * @param \B55\Bundle\YargBundle\Entity\Information $informations
+     */
+    public function removeInformation(\B55\Bundle\YargBundle\Entity\Information $informations)
+    {
+        $this->informations->removeElement($informations);
+    }
+
+    /**
+     * Get informations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInformations()
+    {
+        return $this->informations;
     }
 }

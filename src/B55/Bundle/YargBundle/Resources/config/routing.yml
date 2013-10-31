@@ -15,6 +15,48 @@ yarg_myyarg:
     requirements:
         method: GET
 
+
+# Information
+yarg_myyarg_add_category_info:
+    pattern: /my-yarg/cv/{slug}/category/{category_id}/add/info
+    defaults: { _controller: B55YargBundle:Informations:addToCategory }
+    requirements:
+        category_id: \d+
+
+yarg_myyarg_del_category_info:
+    pattern: /my-yarg/cv/{slug}/category/{category_id}/info/{info_id}/delete
+    defaults: { _controller: B55YargBundle:Informations:delete }
+    requirements:
+        category_id: \d+
+        info_id: \d+
+
+# Cv Information
+yarg_myyarg_add_cv_info:
+    pattern: /my-yarg/cv/{slug}/info/add
+    defaults: { _controller: B55YargBundle:Informations:addToCv }
+
+
+# Category
+yarg_myyarg_add_category:
+    pattern: /my-yarg/cv/{slug}/category/add/{parent}
+    defaults: { _controller: B55YargBundle:Categories:add, parent: null }
+    requirements:
+        parent: \d+
+
+yarg_myyarg_del_category:
+    pattern: /my-yarg/cv/{slug}/category/{category_id}/delete
+    defaults: { _controller: B55YargBundle:Categories:delete }
+    requirements:
+        category_id: \d+
+
+yarg_myyarg_edit_category:
+    pattern: /my-yarg/cv/{slug}/category/{category_id}/edit
+    defaults: { _controller: B55YargBundle:Categories:edit }
+    requirements:
+        category_id: \d+
+
+
+# CV
 yarg_myyarg_new_cv:
     pattern: /my-yarg/add/cv
     defaults: { _controller: B55YargBundle:Cvs:add }
@@ -27,24 +69,13 @@ yarg_myyarg_delete_cv:
     pattern: /my-yarg/cv/{slug}/delete
     defaults: { _controller: B55YargBundle:Cvs:delete }
 
-yarg_show_public_cv:
-    pattern: /cv/{user_slug}/{cv_slug}
-    defaults: { _controller: B55YargBundle:Cvs:showPublic }
-
 yarg_myyarg_edit_cv:
     pattern: /my-yarg/cv/{slug}/edit
     defaults: { _controller: B55YargBundle:Cvs:edit }
 
-yarg_myyarg_add_category:
-    pattern: /my-yarg/cv/{slug}/category/add/{parent}
-    defaults: { _controller: B55YargBundle:Categories:add, parent: null }
-    requirements:
-        parent: \d+
 
-yarg_myyarg_add_category_info:
-    pattern: /my-yarg/cv/{slug}/category/{category_id}/add/info
-    defaults: { _controller: B55YargBundle:Informations:addToCategory}
+# Public CV URL
+yarg_show_public_cv:
+    pattern: /cv/{user_slug}/{cv_slug}
+    defaults: { _controller: B55YargBundle:Cvs:showPublic }
 
-yarg_myyarg_add_user_info:
-    pattern: /my-yarg/{slug}/info/add
-    defaults: { _controller: B55YargBundle:Informations:addToUser}

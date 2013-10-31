@@ -72,5 +72,84 @@ class InformationsController extends Controller
         );
     }
 
-    public function addToUser() {}
+    /**
+     * Add an info to a CV (top left).
+     */
+    public function addToCvAction(Cv $cv)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $info = new Information();
+        $info->setCv($cv);
+
+        $form = $this->createForm(
+            new InformationForm(),
+            $info,
+            array(
+                'action' => $this->generateUrl(
+                    'yarg_myyarg_add_cv_info',
+                    array('slug' => $cv->getSlug())
+                ),
+            )
+        );
+        return $this->render(
+            'B55YargBundle:Informations:add_content.html.twig',
+            array('form' => $form->createView())
+        );
+        /*
+        if ($request->getMethod() == 'POST') {
+            $form->handleRequest($request);
+            $state = 'error';
+
+            if ($form->isValid()) {
+                $category->addInformation($info);
+                $em->persist($category);
+                $em->flush();
+
+                $state = 'success';
+            }
+
+            $request->getSession()->getFlashBag()->add(
+                $state,
+                'yarg.my_yarg.cv.category.information.created.' . $state
+            );
+
+            return $this->redirect(
+                $this->generateUrl(
+                    'yarg_myyarg_show_cv',
+                    array('slug' => $cv->getSlug())
+                )
+            );
+        }
+
+        return $this->render(
+            'B55YargBundle:Informations:add_content.html.twig',
+            array('form' => $form->createView())
+        );
+        */
+    }
+
+    /**
+     * Delete a category information.
+     */
+    public function deleteAction(Request $request, Cv $cv)
+    {
+        $information = $cv->findInformation(
+            $request->attributes->get('info_id')
+        );
+        if (!$information instanceof Information) {
+            return new Response('You can\'t remove this information.', 404);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($information);
+        $em->flush();
+
+        return $this->redirect(
+            $this->generateUrl(
+                'yarg_myyarg_show_cv',
+                array('slug' => $cv->getSlug())
+            )
+        );
+    }
 }

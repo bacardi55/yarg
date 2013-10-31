@@ -70,4 +70,48 @@ class CategoriesController extends Controller
             array('form' => $form->createView())
         );
     }
+
+    /**
+     * Delete a category.
+     */
+    public function deleteAction(Request $request, Cv $cv)
+    {
+        $category_id = $request->attributes->get('category_id');
+        if (!$category = $cv->findCategory($category_id)) {
+            return new Response('You can\'t delete this category');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($category);
+        $em->flush();
+
+        return $this->redirect(
+            $this->generateUrl(
+                'yarg_myyarg_show_cv',
+                array('slug' => $cv->getSlug())
+            )
+        );
+    }
+    /**
+     * Delete action
+     */
+    public function editAction(Request $request, Cv $cv)
+    {
+        $category_id = $request->query->get('category_id');
+
+        if (!$category = $cv->findCategory($category_id)) {
+          return new Response('You can\'t remove this category.');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($category);
+        $em->flush();
+
+        return $this->redirect(
+            $this->generateUrl(
+                'yarg_myyarg_show_cv',
+                array('slug' => $cv->getSlug())
+            )
+        );
+    }
 }

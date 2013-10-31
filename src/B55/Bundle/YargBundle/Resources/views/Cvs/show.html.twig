@@ -5,7 +5,14 @@
   <div class="row view_cv">
     {# User infos #}
     <div class="span10 offset1">
-      {{ app.user.username }}
+      {{ user.username }}
+      {% if authenticated %}
+        <br />
+        <a href="{{ path('yarg_myyarg_add_cv_info', {'slug': cv.slug}) }}" data-target="#yargAddModal" role="button" class="yargCreatemodal btn btn-primary" data-toggle="modal" data-title="{{ 'yarg.my_yarg.cv.information.add_link'|trans }}">
+          <i class="icon-white icon-plus"></i>
+          {{ 'yarg.my_yarg.cv.category.add_link'|trans }}
+        </a>
+      {% endif %}
     </div>
     <div class="span12 catch">
         {{ cv.catch }}
@@ -19,15 +26,31 @@
           </div>
         {% endif %}
       {% endfor %}
-      <div class="span5 offset5">
-      <br /><br />
-        <a href="{{ path('yarg_myyarg_add_category', {'slug': cv.slug}) }}" data-target="#yargAddModal" role="button" class="yargCreatemodal btn btn-primary" data-toggle="modal" data-title="{{ 'yarg.my_yarg.cv.category.add_link'|trans }}">
-          <i class="icon-white icon-plus"></i>
-          {{ 'yarg.my_yarg.cv.category.add_link'|trans }}
-        </a>
-      </div>
+      {% if authenticated == true %}
+        <div class="span5 offset5">
+        <br /><br />
+          <a href="{{ path('yarg_myyarg_add_category', {'slug': cv.slug}) }}" data-target="#yargAddModal" role="button" class="yargCreatemodal btn btn-primary" data-toggle="modal" data-title="{{ 'yarg.my_yarg.cv.category.add_link'|trans }}">
+            <i class="icon-white icon-plus"></i>
+            {{ 'yarg.my_yarg.cv.category.add_link'|trans }}
+          </a>
+        </div>
+      {% endif %}
   </div>
 
+  {% if authenticated == true %}
+    <div class="yarg_tools navbar navbar-inverse navbar-fixed-bottom">
+      <div class="navbar-inner">
+        <div class="container" id="yarg_menu">
+          <a class="brand" href="#">Tools:</a>
+          <ul class="nav nav-list bs-docs-sidenav affix">
+            <li><a href="{{ path('yarg_myyarg_show_cv', {'slug': cv.slug, 'preview': true}) }}"><i class="icon-globe icon-white"> </i>Preview</a></li>
+            <li><a href="#"><i class="icon-edit icon-white"> </i>Edit Cv information</a></i>
+            {# <li><a href="#"><i class="icon-download-alt icon-white"> </i>Pdf export</a></li> #}
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 
   {# Modal #}
   <div id="yargAddModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -35,7 +35,7 @@
             {% for key, message in messages %}
                 <div class="alert alert-{{ type }} flash-{{ type }}">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>{{ type }}:</strong> {{ message|trans({}, 'FOSUserBundle') }}
+                    <strong>{{ type }}:</strong> {{ message|trans }}
                 </div>
             {% endfor %}
         {% endfor %}

@@ -2,27 +2,7 @@
 {% set active = 'my_yarg' %}
 
 {% block content %}
-  <h2>{{ 'yarg.my_yarg.welcome'|trans }} {{ app.user.username }}</h2>
-  <div class="row">
-    <div class="span5 well">
-      <h3>{{ 'yarg.my_yarg.profile.show'|trans }}</h3>
-      <div>
-        <blockquote><p>{{ 'yarg.my_yarg.profile.intro'|trans }}</p></blockquote>
-        <strong>{{ 'yarg.my_yarg.user.username' | trans }}</strong>: {{ app.user.username }}
-        <br/>
-        <strong>{{ 'yarg.my_yarg.user.email' | trans }}</strong>: {{ app.user.email }}
-
-        <p><br/><br/>
-          <a id="edit_profile" href="{{ path('fos_user_profile_edit') }}">
-            <button name="yarg_edit_profile" class="btn btn-primary">
-              <i class="icon-edit icon-white"></i>
-              {{ 'yarg.my_yarg.profile.edit'|trans }}
-            </button>
-          </a>
-        </p>
-      </div>
-    </div>
-
+    <h2>{{ 'yarg.my_yarg.welcome'|trans }} {{ app.user.username }}</h2>
     <div class="span5 well">
       {% if app.user.hasCv %}
         <h3>{{ 'yarg.my_yarg.cv.your_cvs'|trans }}</h3>
@@ -38,7 +18,7 @@
                 <i class="icon-trash"></i>
               </a>
               {% if cv.published %}
-                <span><i class="icon-globe"> </i></span>
+                <span><a href="{{ path('yarg_show_public_cv', {'user_slug': app.user.usernamecanonical, 'cv_slug': cv.slug}) }}"><i class="icon-globe"> </i></a></span>
               {% endif %}
             </li>
           {% endfor %}
@@ -55,17 +35,19 @@
       </a></p>
     </div>
 
-    <div class="clearfix"></div>
-
     <div class="span5 well">
-      <h3>{{ 'yarg.my_yarg.user.informations.your_info'|trans }}</h3>
+      <h3>{{ 'yarg.my_yarg.profile.show'|trans }}</h3>
       <div>
-        <blockquote><p>{{ 'yarg.my_yarg.user.informations.intro'|trans }}</p></blockquote>
+        <blockquote><p>{{ 'yarg.my_yarg.profile.intro'|trans }}</p></blockquote>
+        <strong>{{ 'yarg.my_yarg.user.username' | trans }}</strong>: {{ app.user.username }}
+        <br/>
+        <strong>{{ 'yarg.my_yarg.user.email' | trans }}</strong>: {{ app.user.email }}
+
         <p><br/><br/>
-          <a id="user_add_info" href="{{ path('fos_user_profile_edit') }}">
-            <button class="btn btn-primary">
-              <i class="icon-plus icon-white"></i>
-              {{ 'yarg.my_yarg.user.informations.add_link'|trans }}
+          <a id="edit_profile" href="{{ path('fos_user_profile_edit') }}">
+            <button name="yarg_edit_profile" class="btn btn-primary">
+              <i class="icon-edit icon-white"></i>
+              {{ 'yarg.my_yarg.profile.edit'|trans }}
             </button>
           </a>
         </p>

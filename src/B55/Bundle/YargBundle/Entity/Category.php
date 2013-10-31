@@ -68,6 +68,27 @@ class Category
      */
     protected $informations;
 
+    /**
+     * Look for a particular information by its id in this Category.
+     *
+     * @param integer $needle
+     *   The needed Information id.
+     *
+     * @return mixed
+     *   Information object if found.
+     *   False otherwise.
+     */
+    public function findInformation($needle)
+    {
+        foreach ($this->informations as $information) {
+            if ($information->getId() == $needle) {
+                return $information;
+            }
+        }
+
+        return false;
+    }
+
     public function __construct()
     {
         $this->children = new ArrayCollection();

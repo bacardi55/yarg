@@ -28,7 +28,7 @@
                                 {% if app.user.hasCv %}
                                     <li>    {{ 'yarg.my_yarg.cv.your_cvs'|trans }}</li>
                                     {% for cv in app.user.cvs %}
-                                        <li><a href="#">> {{ cv.title|slice(0, 20) }} <i class="icon-edit"></i></a></li>
+                                        <li><a href="{{ path('yarg_myyarg_show_cv', {'slug': cv.slug}) }}">> {{ cv.title|slice(0, 20) }} <i class="icon-edit"></i></a></li>
                                     {% endfor %}
                                     <li class="divider"></li>
                                 {% endif %}

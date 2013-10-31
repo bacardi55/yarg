@@ -49,11 +49,14 @@ class CvsController extends Controller
     /**
      * ParamConverter("cv", class="B55YargBundle:Cv", options={"mapping:": {"slug": "slug"}})
      */
-    public function showAction(Cv $cv)
+    public function showAction(Request $request, Cv $cv)
     {
         return $this->render(
             'B55YargBundle:Cvs:show.html.twig',
-            array('cv' => $cv)
+            array(
+                'cv' => $cv,
+                'authenticated' => ($request->query->get('preview') ? false : true),
+                'user' => $this->get('security.context')->getToken()->getUser())
         );
     }
 
@@ -76,11 +79,13 @@ class CvsController extends Controller
     public function showPublicAction(User $user, Cv $cv)
     {
         if (!$cv->getPublished()) {
-          throw $this->createNotFoundException('This Cv doesn\'t exist or is not published anymore');
+          return new Response('This Cv doesn\'t exist or is not published anymore', 404);
         }
 
+        $user = $this->get('security.context')->getToken()->getUser();
         return $this->render(
-            'B55YargBundle:Cvs:show.html.twig', array('authenticated' => false)
+            'B55YargBundle:Cvs:show.html.twig',
+            array('cv' => $cv, 'authenticated' => false, 'user' => $user)
         );
     }
 
