@@ -160,9 +160,11 @@ class InformationsController extends Controller
      */
     public function deleteAction(Request $request, Cv $cv)
     {
+        $cat_id = $request->attributes->get('category_id');
         $information = $cv->findInformation(
-            $request->attributes->get('info_id')
+            $request->attributes->get('info_id'), $cat_id
         );
+
         if (!$information instanceof Information) {
             return new Response('You can\'t remove this information.', 404);
         }

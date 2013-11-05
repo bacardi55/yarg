@@ -8,7 +8,7 @@
       {% for cv_info in cv.informations %}
         <div>
           {% if authenticated %}
-            <i class="icon-trash"></i>
+            <a href="{{ path('yarg_myyarg_del_cv_info', {'slug': cv.slug, 'info_id': cv_info.id}) }}"><i class="icon-trash"> </i></a>
             <i class="icon-edit"></i>
           {% endif %}
           {{ cv_info.title }} {{ cv_info.value }}

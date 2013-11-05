@@ -119,19 +119,70 @@ class Cv
      * @param integer $needle
      *   The Information id needed.
      *
+     * @param integer $cat_id (optionnal)
+     *   The category id if the information should be inside a category.
+     *
      * @return Mixed
      *   The Information matching the given id if found.
      *   False otherwise.
      */
-    public function findInformation($needle)
+    public function findInformation($needle, $cat_id = NULL)
+    {
+        if ($cat_id) {
+            return $this->findInformationInCategory($needle, $cat_id);
+        }
+        else {
+            return $this->findInformationInCv($needle);
+        }
+
+        return false;
+    }
+
+    /**
+     * Find an information in the CV information (not in categories).
+     *
+     * @param integer $needle
+     *   The information id needed.
+     *
+     * @return Mixed
+     *   The Information matching the given id if found.
+     *   False otherwise.
+     */
+    public function findInformationInCv($needle)
+    {
+        foreach ($this->informations as $information) {
+            if ($information->getId() == $needle) {
+                return $information;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Find an information (via its id) in this Cv for the given category id.
+     *
+     * @param integer $needle
+     *   The Information id needed.
+     *
+     * @param integer $category_id
+     *   The category id where the information should be.
+     *
+     * @return Mixed
+     *   The Information matching the given id if found.
+     *   False otherwise.
+     */
+    public function findInformationInCategory($needle, $category_id)
     {
         foreach ($this->categories as $category) {
-            if ($information = $category->findInformation($needle)) {
+            if ($category->getId() == $category_id
+                 && $information = $category->findInformation($needle)) {
                 return $information;
             }
 
             foreach ($category->getChildren() as $subcategory) {
-                if ($information = $subcategory->findInformation($needle)) {
+                if ($category->getId() == $category_id
+                     && $information = $subcategory->findInformation($needle)) {
                     return $information;
                 }
             }

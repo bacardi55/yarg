@@ -35,6 +35,10 @@ yarg_myyarg_add_cv_info:
     pattern: /my-yarg/cv/{slug}/info/add
     defaults: { _controller: B55YargBundle:Informations:addToCv }
 
+yarg_myyarg_del_cv_info:
+    pattern: /my-yarg/cv/{slug}/info/{info_id}/delete
+    defaults: { _controller: B55YargBundle:Informations:delete }
+
 
 # Category
 yarg_myyarg_add_category:
