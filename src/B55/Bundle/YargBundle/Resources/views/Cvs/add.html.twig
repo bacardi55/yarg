@@ -3,9 +3,7 @@
 
 {% block content %}
   <div class="yarg-form">
-    {{ form_start(form) }}
-    {{ form_rest(form) }}
-
+    {% include 'B55YargBundle:Cvs:add_content.html.twig' with {'form': form} %}
     <div class="form-actions">
       <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'yarg.cv.submit'|trans }}" />
     </div>

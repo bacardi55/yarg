@@ -56,7 +56,9 @@
           <a class="brand" href="#">Tools:</a>
           <ul class="nav nav-list bs-docs-sidenav affix">
             <li><a href="{{ path('yarg_myyarg_show_cv', {'slug': cv.slug, 'preview': true}) }}"><i class="icon-globe icon-white"> </i>Preview</a></li>
-            <li><a href="#"><i class="icon-edit icon-white"> </i>Edit Cv information</a></i>
+            <li><a href="{{ path('yarg_myyarg_edit_cv', {'slug': cv.slug}) }}" data-target="#yargAddModal" role="button" class="yargCreatemodal" data-toggle="modal" data-title="{{ 'yarg.my_yarg.cv.information.edit_link'|trans }}">
+              <i class="icon-edit icon-white"> </i>Edit Cv information
+            </a></i></li>
             {# <li><a href="#"><i class="icon-download-alt icon-white"> </i>Pdf export</a></li> #}
           </ul>
         </div>

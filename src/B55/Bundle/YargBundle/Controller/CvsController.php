@@ -63,11 +63,15 @@ class CvsController extends Controller
     /**
      * @ParamConverter("cv", class="B55YargBundle:Cv", options={"mapping": {"slug": "slug"}})
      */
-    public function deleteAction(Cv $cv)
+    public function deleteAction(Request $request, Cv $cv)
     {
         $em = $this->getDoctrine()->getManager();
         $em->remove($cv);
         $em->flush();
+
+        $request->getSession()->getFlashBag()->add(
+            'success', 'yarg.my_yarg.cv.deleted'
+        );
 
         return $this->redirect($this->generateUrl('yarg_myyarg'));
     }
@@ -94,33 +98,35 @@ class CvsController extends Controller
      */
     public function editAction(Request $request, Cv $cv)
     {
-        //TODO: Fix
-
-        $form = $this->createForm(new CvForm(), $cv);
         $user = $this->get('security.context')->getToken()->getUser();
+        $form = $this->createForm(new CvForm(), $cv, array(
+            'action' => $this->generateUrl(
+                'yarg_myyarg_edit_cv', array('slug' => $cv->getSlug())
+            ),
+        ));
 
-        $bool = false;
-        $message = '';
-        if ($user->getId() == $cv->getUser()->getId() && $request->getMethod() == 'POST') {
-            $request = $this->getRequest();
-
-            $form->bind($request);
-            if($form->isValid()) {
+        if ($request->getMethod() == 'POST') {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($cv);
                 $em->flush();
-                $bool = true;
+
+                $request->getSession()->getFlashBag()->add(
+                  'success', 'yarg.my_yarg.cv.edited.success'
+                );
+
+                return $this->redirect(
+                    $this->generateUrl('yarg_myyarg_show_cv',
+                    array('slug' => $cv->getSlug()))
+                );
             }
         }
 
-        $json = array(
-            'status' => ($bool ? 'success' : 'error'),
-            'message' => $message,
+        return $this->render(
+            'B55YargBundle:Cvs:add_content.html.twig',
+            array('form' => $form->createView())
         );
-        $response = new Response(json_encode($json));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
     }
 }
 
