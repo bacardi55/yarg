@@ -5,12 +5,20 @@
   <div class="row view_cv">
     {# User infos #}
     <div class="span10 offset1">
-      {{ user.username }}
+      {% for cv_info in cv.informations %}
+        <div>
+          {% if authenticated %}
+            <i class="icon-trash"></i>
+            <i class="icon-edit"></i>
+          {% endif %}
+          {{ cv_info.title }} {{ cv_info.value }}
+        </div>
+      {% endfor %}
       {% if authenticated %}
         <br />
         <a href="{{ path('yarg_myyarg_add_cv_info', {'slug': cv.slug}) }}" data-target="#yargAddModal" role="button" class="yargCreatemodal btn btn-primary" data-toggle="modal" data-title="{{ 'yarg.my_yarg.cv.information.add_link'|trans }}">
           <i class="icon-white icon-plus"></i>
-          {{ 'yarg.my_yarg.cv.category.add_link'|trans }}
+          {{ 'yarg.my_yarg.cv.category.add_info_link'|trans }}
         </a>
       {% endif %}
     </div>

@@ -16,14 +16,7 @@ body {
   text-align:center;
 }
 
-.yarg_tools {
+.yarg_tools.navbar .nav li {
   padding-right: 30px;
 }
-
-.
-/* debug:
-.view_cv div {
-  border: 1px solid black;
-}
-*/
 

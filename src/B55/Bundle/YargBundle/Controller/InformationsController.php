@@ -75,7 +75,7 @@ class InformationsController extends Controller
     /**
      * Add an info to a CV (top left).
      */
-    public function addToCvAction(Cv $cv)
+    public function addToCvAction(Request $request, Cv $cv)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -92,6 +92,32 @@ class InformationsController extends Controller
                 ),
             )
         );
+
+        if ($request->getMethod() == 'POST') {
+            $form->handleRequest($request);
+            $state = 'error';
+
+            if ($form->isValid()) {
+                $cv->addInformation($info);
+                $em->persist($cv);
+                $em->flush();
+
+                $state = 'success';
+            }
+
+            $request->getSession()->getFlashBag()->add(
+                $state,
+                'yarg.my_yarg.cv.category.information.created.' . $state
+            );
+
+            return $this->redirect(
+                $this->generateUrl(
+                    'yarg_myyarg_show_cv',
+                    array('slug' => $cv->getSlug())
+                )
+            );
+        }
+
         return $this->render(
             'B55YargBundle:Informations:add_content.html.twig',
             array('form' => $form->createView())
