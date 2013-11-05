@@ -85,6 +85,11 @@ class CategoriesController extends Controller
         $em->remove($category);
         $em->flush();
 
+        $request->getSession()->getFlashBag()->add(
+            'success',
+            'yarg.my_yarg.cv.category.deleted'
+        );
+
         return $this->redirect(
             $this->generateUrl(
                 'yarg_myyarg_show_cv',
@@ -97,21 +102,48 @@ class CategoriesController extends Controller
      */
     public function editAction(Request $request, Cv $cv)
     {
-        $category_id = $request->query->get('category_id');
-
+        $category_id = $request->attributes->get('category_id');
         if (!$category = $cv->findCategory($category_id)) {
-          return new Response('You can\'t remove this category.');
+          return new Response('You can\'t edit this category.');
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($category);
-        $em->flush();
-
-        return $this->redirect(
-            $this->generateUrl(
-                'yarg_myyarg_show_cv',
-                array('slug' => $cv->getSlug())
+        $form = $this->createForm(
+            new CategoryForm(), $category,
+            array(
+                'action' => $this->generateUrl(
+                    'yarg_myyarg_edit_category',
+                    array(
+                      'slug' => $cv->getSlug(),
+                      'category_id' => $category->getId(),
+                    )
+                )
             )
+        );
+
+        if ($request->getMethod() == 'POST') {
+            $form->handleRequest($request);
+            $state = 'error';
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($category);
+                $em->flush();
+                $state = 'success';
+            }
+
+            $request->getSession()->getFlashBag()->add(
+                $state, 'yarg.my_yarg.cv.category.edited.' . $state
+            );
+            return $this->redirect(
+                $this->generateUrl(
+                    'yarg_myyarg_show_cv',
+                    array('slug' => $cv->getSlug())
+                )
+            );
+        }
+
+        return $this->render(
+            'B55YargBundle:Categories:add_content.html.twig',
+            array('form' => $form->createView())
         );
     }
 }

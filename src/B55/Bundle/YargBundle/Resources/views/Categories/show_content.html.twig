@@ -2,6 +2,9 @@
   <h4>
     {% if authenticated  %}
         <a href="{{ path('yarg_myyarg_del_category', {'slug': cv.slug, 'category_id': category.id}) }}"><i class="icon-trash"></i></a>
+        <a href="{{ path('yarg_myyarg_edit_category', {'slug': cv.slug, 'category_id': category.id}) }}" data-target="#yargAddModal" role="button" class="yargCreatemodal" data-toggle="modal" data-title="{{ 'yarg.my_yarg.cv.category.add_info_link'|trans }}">
+          <i class="icon-edit"></i>
+        </a>
     {% endif %}
     {{ category.name }}
   </h4>
@@ -11,7 +14,7 @@
       <a href="{{ path('yarg_myyarg_del_category', {'slug': cv.slug, 'category_id': category.id}) }}">
         <i class="icon-trash"></i>
       </a>
-      <a href="{{ path('yarg_myyarg_edit_category', {'slug': cv.slug, 'category_id': category.id}) }}">
+      <a href="{{ path('yarg_myyarg_edit_category', {'slug': cv.slug, 'category_id': category.id}) }}" data-target="#yargAddModal" role="button" class="yargCreatemodal" data-toggle="modal" data-title="{{ 'yarg.my_yarg.cv.category.add_info_link'|trans }}">
         <i class="icon-edit"></i>
       </a>
     {% endif %}
