@@ -8,6 +8,10 @@ body {
   margin: auto;
 }
 
+.view_cv {
+  padding-bottom: 55px;
+}
+
 .view_cv h3 {
   border-bottom: 2px solid black;
 }

@@ -8,8 +8,12 @@
       {% for cv_info in cv.informations %}
         <div>
           {% if authenticated %}
-            <a href="{{ path('yarg_myyarg_del_cv_info', {'slug': cv.slug, 'info_id': cv_info.id}) }}"><i class="icon-trash"> </i></a>
-            <i class="icon-edit"></i>
+            <a href="{{ path('yarg_myyarg_del_cv_info', {'slug': cv.slug, 'info_id': cv_info.id}) }}">
+              <i class="icon-trash"> </i>
+            </a>
+            <a href="{{ path('yarg_myyarg_edit_cv_info', {'slug': cv.slug, 'info_id': cv_info.id}) }}" data-target="#yargAddModal" role="button" class="yargCreatemodal" data-toggle="modal" data-title="{{ 'yarg.my_yarg.cv.information.edit_link'|trans }}">
+              <i class="icon-edit"></i>
+            </a>
           {% endif %}
           {{ cv_info.title }} {{ cv_info.value }}
         </div>

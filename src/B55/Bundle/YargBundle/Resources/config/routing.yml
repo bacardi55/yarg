@@ -23,6 +23,13 @@ yarg_myyarg_add_category_info:
     requirements:
         category_id: \d+
 
+yarg_myyarg_edit_category_info:
+    pattern: /my-yarg/cv/{slug}/category/{category_id}/info/{info_id}/edit
+    defaults: { _controller: B55YargBundle:Informations:edit }
+    requirements:
+        info_id: \d+
+        category_id: \d+
+
 yarg_myyarg_del_category_info:
     pattern: /my-yarg/cv/{slug}/category/{category_id}/info/{info_id}/delete
     defaults: { _controller: B55YargBundle:Informations:delete }
@@ -30,10 +37,17 @@ yarg_myyarg_del_category_info:
         category_id: \d+
         info_id: \d+
 
+
 # Cv Information
 yarg_myyarg_add_cv_info:
     pattern: /my-yarg/cv/{slug}/info/add
     defaults: { _controller: B55YargBundle:Informations:addToCv }
+
+yarg_myyarg_edit_cv_info:
+    pattern: /my-yarg/cv/{slug}/info/{info_id}/edit
+    defaults: { _controller: B55YargBundle:Informations:edit }
+    requirements:
+        info_id: \d+
 
 yarg_myyarg_del_cv_info:
     pattern: /my-yarg/cv/{slug}/info/{info_id}/delete

@@ -35,7 +35,7 @@ class InformationsController extends Controller
                     'yarg_myyarg_add_category_info',
                     array(
                         'slug' => $cv->getSlug(),
-                        'category_id' => $category->getId(),
+                        'category_id' => $info->getCategory()->getId(),
                     )
                 ),
             )
@@ -57,13 +57,7 @@ class InformationsController extends Controller
                 $state,
                 'yarg.my_yarg.cv.category.information.created.' . $state
             );
-
-            return $this->redirect(
-                $this->generateUrl(
-                    'yarg_myyarg_show_cv',
-                    array('slug' => $cv->getSlug())
-                )
-            );
+            return $this->getRedirectToCvResponse($cv);
         }
 
         return $this->render(
@@ -110,49 +104,13 @@ class InformationsController extends Controller
                 'yarg.my_yarg.cv.category.information.created.' . $state
             );
 
-            return $this->redirect(
-                $this->generateUrl(
-                    'yarg_myyarg_show_cv',
-                    array('slug' => $cv->getSlug())
-                )
-            );
+            return $this->getRedirectToCvResponse($cv);
         }
 
         return $this->render(
             'B55YargBundle:Informations:add_content.html.twig',
             array('form' => $form->createView())
         );
-        /*
-        if ($request->getMethod() == 'POST') {
-            $form->handleRequest($request);
-            $state = 'error';
-
-            if ($form->isValid()) {
-                $category->addInformation($info);
-                $em->persist($category);
-                $em->flush();
-
-                $state = 'success';
-            }
-
-            $request->getSession()->getFlashBag()->add(
-                $state,
-                'yarg.my_yarg.cv.category.information.created.' . $state
-            );
-
-            return $this->redirect(
-                $this->generateUrl(
-                    'yarg_myyarg_show_cv',
-                    array('slug' => $cv->getSlug())
-                )
-            );
-        }
-
-        return $this->render(
-            'B55YargBundle:Informations:add_content.html.twig',
-            array('form' => $form->createView())
-        );
-        */
     }
 
     /**
@@ -160,11 +118,7 @@ class InformationsController extends Controller
      */
     public function deleteAction(Request $request, Cv $cv)
     {
-        $cat_id = $request->attributes->get('category_id');
-        $information = $cv->findInformation(
-            $request->attributes->get('info_id'), $cat_id
-        );
-
+        $information = $this->getInformationFromRequest($request, $cv);
         if (!$information instanceof Information) {
             return new Response('You can\'t remove this information.', 404);
         }
@@ -173,6 +127,103 @@ class InformationsController extends Controller
         $em->remove($information);
         $em->flush();
 
+        $request->getSession()->getFlashBag()->add(
+            'success',
+            'yarg.my_yarg.cv.category.information.deleted'
+        );
+
+        return $this->getRedirectToCvResponse($cv);
+    }
+    /**
+     * Edit an information.
+     */
+    public function editAction(Request $request, Cv $cv)
+    {
+        $information = $this->getInformationFromRequest($request, $cv);
+        if (!$information instanceof Information) {
+            return new Response('You can\'t edit this information.', 404);
+        }
+
+        if ($information->getCategory()) {
+            $action = $this->generateUrl(
+                'yarg_myyarg_edit_category_info',
+                array(
+                    'slug' => $cv->getSlug(),
+                    'category_id' => $information->getCategory()->getId(),
+                    'info_id' => $information->getId(),
+                )
+            );
+        }
+        else {
+            $action = $this->generateUrl(
+                'yarg_myyarg_edit_cv_info',
+                array(
+                    'slug' => $cv->getSlug(),
+                    'info_id' => $information->getId(),
+                )
+            );
+        }
+
+        $form = $this->createForm(
+            new InformationForm(),
+            $information,
+            array('action' => $action)
+        );
+
+        if ($request->getMethod() == 'POST') {
+            $form->handleRequest($request);
+            $state = 'error';
+
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($information);
+                $em->flush();
+
+                $state = 'success';
+            }
+
+            $request->getSession()->getFlashBag()->add(
+                $state,
+                'yarg.my_yarg.cv.category.information.edited.' . $state
+            );
+
+            return $this->getRedirectToCvResponse($cv);
+        }
+
+        return $this->render(
+            'B55YargBundle:Informations:add_content.html.twig',
+            array('form' => $form->createView())
+        );
+    }
+
+    /**
+     * Return the information matching the cv and the request.
+     *
+     * @param Request $request
+     *
+     * @param Cv $cv
+     *
+     * @return mixed.
+     *   An Information if found.
+     *   False otherwise.
+     */
+    private function getInformationFromRequest(Request $request, $cv)
+    {
+        $cat_id = $request->attributes->get('category_id');
+        $information = $cv->findInformation(
+            $request->attributes->get('info_id'), $cat_id
+        );
+
+        return $information;
+    }
+
+    /**
+     * Return the redirection to the show Cv page.
+     *
+     * @param Cv $cv
+     */
+    private function getRedirectToCvResponse(Cv $cv)
+    {
         return $this->redirect(
             $this->generateUrl(
                 'yarg_myyarg_show_cv',
