@@ -8,6 +8,7 @@ yarg:
         submit: Create this Cv!
         is_public: Is this Cv public ?
     my_yarg:
+        title: My Yarg
         welcome: Welcome!
         cv:
             intro: This is basic list of your Cv(s). Click the block title to have a detailled view.

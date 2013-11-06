@@ -7,7 +7,7 @@
                 <ul class="nav">
                     <li {% if 'homepage' == active %}class="active"{% endif %}><a href="{{ path('yarg_index') }}">{{ 'yarg.homepage'|trans }}</a></li>
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <li{% if 'my_yarg' == active %}class="active"{% endif %}><a href="{{ path('yarg_myyarg') }}"></a><li>
+                        <li{% if 'my_yarg' == active %} class="active"{% endif %}><a href="{{ path('yarg_myyarg') }}">{{ 'yarg.my_yarg.title'|trans }}</a><li>
                     {% endif %}
                 </ul>
                 <ul class="nav pull-right">
