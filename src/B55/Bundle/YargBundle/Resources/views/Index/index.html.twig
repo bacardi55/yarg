@@ -4,8 +4,62 @@
 {% block content %}
   <div class="jumbotron masthead">
     <div class="container">
-      <h1>Yarg's homepage</h1>
-      <p>Yarg (Yet Another Resume Generator)</p>
+      <div class="hero-unit">
+        <h1>Yarg</h1>
+        <p>{{ 'yarg.intro'|trans }}</p>
+      </div>
+      <div class="accordion" id="accordion1">
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+              Main feature (version 0.1)
+            </a>
+          </div>
+          <div id="collapseOne" class="accordion-body collapse in">
+            <div class="accordion-inner">
+              <ul>
+                <li>OpenSource</li>
+                <li>Multi Users</li>
+                <li>Multi Cvs per users</li>
+                <li>Publishing Cv</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
+              Comming very soon:
+            </a>
+          </div>
+          <div id="collapseTwo" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <ul>
+                <li>Reordering Category and Information</li>
+                <li>PDF export and PDF permanent link</li>
+                <li>A better website</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree">
+              Technically, it uses:
+            </a>
+          </div>
+          <div id="collapseThree" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <ul>
+                <li>Symfony2</li>
+                <li>doctrine as ORM</li>
+                <li>FOSRestBundle, FOSUserBundle, SensioFrameworkExtraBundle, BcBootstrap, …</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}
+
