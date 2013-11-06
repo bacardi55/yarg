@@ -55,7 +55,9 @@ class CategoriesController extends Controller
             }
 
             $request->getSession()->getFlashBag()->add(
-                $state, 'yarg.my_yarg.cv.category.created.' . $state
+                $state,
+                $this->get('translator')
+                    ->trans('yarg.my_yarg.cv.category.created.' . $state)
             );
             return $this->redirect(
                 $this->generateUrl(
@@ -87,7 +89,8 @@ class CategoriesController extends Controller
 
         $request->getSession()->getFlashBag()->add(
             'success',
-            'yarg.my_yarg.cv.category.deleted'
+            $this->get('translator')
+                ->trans('yarg.my_yarg.cv.category.deleted')
         );
 
         return $this->redirect(
@@ -131,7 +134,9 @@ class CategoriesController extends Controller
             }
 
             $request->getSession()->getFlashBag()->add(
-                $state, 'yarg.my_yarg.cv.category.edited.' . $state
+              $state,
+              $this->get('translator')
+                  ->trans('yarg.my_yarg.cv.category.edited.' . $state)
             );
             return $this->redirect(
                 $this->generateUrl(

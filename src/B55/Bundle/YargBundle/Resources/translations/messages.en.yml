@@ -17,11 +17,30 @@ yarg:
             your_cvs: Your Cv(s):
             created:
                 success: Your Cv has been created successfully.
+                error: Your Cv couldn't been created!
+            edited:
+                success: Your Cv has been edited.
+                error: Your Cv couldn't been edited!
             last_update: Last update:
             category:
                 add_link: Add a category
                 add_info_link: Add an information
                 add_subcat_link: Add a sub category
+                created:
+                    success: Category has been created.
+                    error: Category couldn't be created!
+                edited:
+                    success: Category has been edited.
+                    error: Category couldn't be edited!
+                deleted: Category has been deleted.
+                information:
+                    created:
+                        success: Information created successfully.
+                        error: Information couldn't be created!
+                    edited:
+                        success: Information edited successfully.
+                        error: Information couldn't be edited!
+                    deleted: Information has been deleted.
         profile:
             intro: These are your authentication informations. They are *not* used in any of your Cvs.
             edit: Edit your profile

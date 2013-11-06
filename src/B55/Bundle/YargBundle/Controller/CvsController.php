@@ -31,7 +31,8 @@ class CvsController extends Controller
             $em->flush();
 
             $request->getSession()->getFlashBag()->add(
-              'success', 'yarg.my_yarg.cv.created.success'
+              'success',
+              $this->get('translator')->trans('yarg.my_yarg.cv.created.success')
             );
 
             return $this->redirect(
@@ -70,7 +71,8 @@ class CvsController extends Controller
         $em->flush();
 
         $request->getSession()->getFlashBag()->add(
-            'success', 'yarg.my_yarg.cv.deleted'
+            'success',
+            $this->get('translator')->trans('yarg.my_yarg.cv.deleted')
         );
 
         return $this->redirect($this->generateUrl('yarg_myyarg'));
@@ -113,7 +115,8 @@ class CvsController extends Controller
                 $em->flush();
 
                 $request->getSession()->getFlashBag()->add(
-                  'success', 'yarg.my_yarg.cv.edited.success'
+                  'success',
+                  $this->get('translator')->trans('yarg.my_yarg.cv.edited.success')
                 );
 
                 return $this->redirect(

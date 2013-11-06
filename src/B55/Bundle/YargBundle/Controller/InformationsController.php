@@ -55,7 +55,8 @@ class InformationsController extends Controller
 
             $request->getSession()->getFlashBag()->add(
                 $state,
-                'yarg.my_yarg.cv.category.information.created.' . $state
+                $this->get('translator')
+                    ->trans('yarg.my_yarg.cv.category.information.created.' . $state)
             );
             return $this->getRedirectToCvResponse($cv);
         }
@@ -101,7 +102,8 @@ class InformationsController extends Controller
 
             $request->getSession()->getFlashBag()->add(
                 $state,
-                'yarg.my_yarg.cv.category.information.created.' . $state
+                $this->get('translator')
+                    ->trans('yarg.my_yarg.cv.category.information.created.' . $state)
             );
 
             return $this->getRedirectToCvResponse($cv);
@@ -129,7 +131,8 @@ class InformationsController extends Controller
 
         $request->getSession()->getFlashBag()->add(
             'success',
-            'yarg.my_yarg.cv.category.information.deleted'
+            $this->get('translator')
+                ->trans('yarg.my_yarg.cv.category.information.deleted')
         );
 
         return $this->getRedirectToCvResponse($cv);
@@ -184,7 +187,8 @@ class InformationsController extends Controller
 
             $request->getSession()->getFlashBag()->add(
                 $state,
-                'yarg.my_yarg.cv.category.information.edited.' . $state
+                $this->get('translator')
+                    ->trans('yarg.my_yarg.cv.category.information.edited.' . $state)
             );
 
             return $this->getRedirectToCvResponse($cv);
