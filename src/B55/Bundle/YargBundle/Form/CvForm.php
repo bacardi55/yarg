@@ -21,6 +21,14 @@ class CvForm extends AbstractType
       'text',
       array('label' => 'yarg.cv.catch', 'required' => false)
     );
+    $builder->add(
+      'published',
+      'checkbox',
+      array(
+        'label' => 'yarg.cv.is_public',
+        'required' => false,
+      )
+    );
   }
 
   /**

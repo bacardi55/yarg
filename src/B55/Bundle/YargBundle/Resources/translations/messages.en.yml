@@ -6,6 +6,7 @@ yarg:
         description: Cv description
         catch: Cv catch phrase
         submit: Create this Cv!
+        is_public: Is this Cv public ?
     my_yarg:
         welcome: Welcome!
         cv:
