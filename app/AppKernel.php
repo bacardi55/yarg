@@ -31,6 +31,9 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             // B55:
             new B55\Bundle\YargBundle\B55YargBundle(),
+            new B55\Bundle\YargWebSiteBundle\B55YargWebSiteBundle(),
+            new B55\Bundle\YargAPIBundle\B55YargAPIBundle(),
+            new B55\Bundle\YargAdminBundle\B55YargAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

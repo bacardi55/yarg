@@ -3,12 +3,6 @@
 #    resource: B55\Bundle\YargBundle\Controller\ApiController
 #    prefix: /api/v1/
 
-yarg_index:
-    pattern: /
-    defaults: { _controller: B55YargBundle:Index:index }
-    requirements:
-        method: GET
-
 yarg_myyarg:
     pattern: /my-yarg
     defaults: { _controller: B55YargBundle:MyYarg:Index }

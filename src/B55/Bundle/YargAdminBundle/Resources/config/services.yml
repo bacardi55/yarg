@@ -1,0 +1,7 @@
+parameters:
+#    b55_yarg_admin.example.class: B55\Bundle\YargAdminBundle\Example
+
+services:
+#    b55_yarg_admin.example:
+#        class: %b55_yarg_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

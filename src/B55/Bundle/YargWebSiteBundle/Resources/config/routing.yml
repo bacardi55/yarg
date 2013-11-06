@@ -1,0 +1,6 @@
+yarg_web_site_homepage:
+    pattern: /
+    defaults: { _controller: B55YargWebSiteBundle:Index:index }
+    requirements:
+        method: GET
+

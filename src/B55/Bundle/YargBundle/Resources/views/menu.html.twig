@@ -2,10 +2,10 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container" id="yarg_menu">
-            <a class="brand" href="{{ path('yarg_index') }}">Yarg</a>
+            <a class="brand" href="{{ path('yarg_web_site_homepage') }}">Yarg</a>
             <div class="nav-collapse">
                 <ul class="nav">
-                    <li {% if 'homepage' == active %}class="active"{% endif %}><a href="{{ path('yarg_index') }}">{{ 'yarg.homepage'|trans }}</a></li>
+                    <li {% if 'homepage' == active %}class="active"{% endif %}><a href="{{ path('yarg_web_site_homepage') }}">{{ 'yarg.homepage'|trans }}</a></li>
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <li{% if 'my_yarg' == active %} class="active"{% endif %}><a href="{{ path('yarg_myyarg') }}">{{ 'yarg.my_yarg.title'|trans }}</a><li>
                     {% endif %}

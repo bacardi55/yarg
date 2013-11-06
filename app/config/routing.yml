@@ -31,3 +31,15 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /{_locale}/profile
 
+b55_yarg_web_site:
+    resource: "@B55YargWebSiteBundle/Resources/config/routing.yml"
+    prefix: /{_locale}
+    requirements:
+        _locale: en
+
+b55_yarg_admin:
+    resource: "@B55YargAdminBundle/Resources/config/routing.yml"
+
+b55_yarg_api:
+    resource: "@B55YargAPIBundle/Resources/config/routing.yml"
+

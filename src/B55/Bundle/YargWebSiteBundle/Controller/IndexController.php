@@ -1,6 +1,6 @@
 <?php
 
-namespace B55\Bundle\YargBundle\Controller;
+namespace B55\Bundle\YargWebSiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -9,7 +9,7 @@ class IndexController extends Controller
     public function indexAction()
     {
         return $this->render(
-            'B55YargBundle:Index:index.html.twig', array()
+            'B55YargWebSiteBundle:Index:index.html.twig', array()
         );
     }
 }
