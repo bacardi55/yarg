@@ -49,6 +49,8 @@ class User extends BaseUser
     public function __construct()
     {
         $this->cvs = new ArrayCollection();
+        $this->created = new \Datetime();
+        $this->updated = new \Datetime();
 
         parent::__construct();
     }

@@ -110,6 +110,7 @@ class CvsController extends Controller
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
             if ($form->isValid()) {
+                $cv->setUpdated(new \Datetime());
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($cv);
                 $em->flush();

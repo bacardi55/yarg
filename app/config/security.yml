@@ -36,7 +36,7 @@ security:
                 use_referer: false
             logout:
                 path: fos_user_security_logout
-                target: yarg_index
+                target: yarg_web_site_homepage
 
     access_control:
         - { path: ^/[a-z]+/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
