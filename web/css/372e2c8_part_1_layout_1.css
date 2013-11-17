@@ -1,0 +1,26 @@
+body {
+  padding-top: 60px;
+}
+
+.yarg-form,
+.yarg_edit_profile_form {
+  width: 300px;
+  margin: auto;
+}
+
+.view_cv {
+  padding-bottom: 55px;
+}
+
+.view_cv h3 {
+  border-bottom: 2px solid black;
+}
+
+.view_cv .catch {
+  text-align:center;
+}
+
+.yarg_tools.navbar .nav li {
+  padding-right: 30px;
+}
+
