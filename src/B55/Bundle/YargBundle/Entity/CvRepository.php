@@ -16,9 +16,9 @@ class CvRepository extends EntityRepository
   {
       $query = $this->createQueryBuilder('c')
         ->select('c')
-        ->from('B55YargBundle:Cv', 'cv')
-        ->where('cv.published = 1')
-        ->orderBy('cv.id', 'DESC')
+        ->where('c.published = 1')
+        ->andwhere('c.searchable = 1')
+        ->orderBy('c.id', 'DESC')
         ->setMaxResults(5)
         ->getQuery();
 

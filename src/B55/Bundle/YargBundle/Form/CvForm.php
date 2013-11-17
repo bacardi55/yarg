@@ -29,6 +29,14 @@ class CvForm extends AbstractType
         'required' => false,
       )
     );
+    $builder->add(
+      'searchable',
+      'checkbox',
+      array(
+        'label' => 'yarg.cv.is_searchable',
+        'required' => false,
+      )
+    );
   }
 
   /**
