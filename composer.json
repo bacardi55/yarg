@@ -50,7 +50,6 @@
         "jquery/jquery": "1.9.*"
     },
     "require-dev": {
-      "doctrine/doctrine-fixtures-bundle": "dev-master",
       "behat/behat": "2.4.*@stable",
       "behat/symfony2-extension": "*",
       "behat/mink-extension": "*",
