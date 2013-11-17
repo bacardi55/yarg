@@ -5,6 +5,11 @@ root:
         path: /%locale%/
         permanent: true
 
+yarg_website:
+    resource: "@B55YargWebSiteBundle/Resources/config/routing.yml"
+    prefix: /{_locale}
+    requirements:
+        _locale: en
 yarg:
     resource: "@B55YargBundle/Resources/config/routing.yml"
     prefix: /{_locale}

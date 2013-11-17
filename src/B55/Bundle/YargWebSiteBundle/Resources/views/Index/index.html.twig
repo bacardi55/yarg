@@ -6,58 +6,63 @@
     <div class="container">
       <div class="hero-unit">
         <h1>Yarg</h1>
-        <p>{{ 'yarg.intro'|trans }}</p>
+        <p>
+          {{ 'yargws.intro'|trans }}
+        </p>
+        <p>
+          {{ 'yargws.disclaimer'|trans }}
+        </p>
+        <p>
+          <a class="btn btn-large btn-primary" href="https://lab.bacardi55.org/bacardi55/yarg/blob/master/README.md">{{ 'yargws.learn_more' | trans }}</a>
+        </p>
       </div>
-      <div class="accordion" id="accordion1">
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
-              Main feature (version 0.1)
-            </a>
-          </div>
-          <div id="collapseOne" class="accordion-body collapse in">
-            <div class="accordion-inner">
-              <ul>
-                <li>OpenSource</li>
-                <li>Multi Users</li>
-                <li>Multi Cvs per users</li>
-                <li>Publishing Cv</li>
-              </ul>
+
+      <div class="container">
+        <ul class="thumbnails">
+          <li class="span4">
+            <div class="thumbnail">
+              <h3>Main features:</h3>
+              <p>
+                <ul>
+                  <li>Open source</li>
+                  <li>Multi Users</li>
+                  <li>Multi Cvs per users</li>
+                  <li>i18n (only english translation for now)</li>
+                  <li>Publish your CV <icon class="icon-question-sign"></i></li>
+                  <li>A lot more to come, follow <a href="https://lab.bacardi55.org/bacardi55/yarg/issues">the roadmap</a></li>
+                </ul>
+              </p>
             </div>
-          </div>
-        </div>
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
-              Comming very soon:
-            </a>
-          </div>
-          <div id="collapseTwo" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <ul>
-                <li>Reordering Category and Information</li>
-                <li>PDF export and PDF permanent link</li>
-                <li>A better website</li>
-              </ul>
+          </li>
+          <li class="span4">
+            <div class="thumbnail">
+              <h3>Last published CVs:</h3>
+              <p>
+                <ul>
+                  {% for cv in lastPublishedCvs %}
+                    <li><a href="{{ path('yarg_show_public_cv', {'user_slug': cv.user.usernamecanonical, 'cv_slug': cv.slug}) }}">{{ cv.title }}</a> by {{ cv.user.username }}</li>
+                  {% else %}
+                    <li>No published Cv yet</li>
+                  {% endfor %}
+                </ul>
+              </p>
             </div>
-          </div>
-        </div>
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree">
-              Technically, it uses:
-            </a>
-          </div>
-          <div id="collapseThree" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <ul>
-                <li>Symfony2</li>
-                <li>doctrine as ORM</li>
-                <li>FOSRestBundle, FOSUserBundle, SensioFrameworkExtraBundle, BcBootstrap, …</li>
-              </ul>
+          </li>
+          <li class="span4">
+            <div class="thumbnail">
+              <h3>Runs with:</h3>
+              <p>
+                <ul>
+                  <li>PHP >= 5.3</li>
+                  <li>Framework Symfony2 and all the usefull bundles</li>
+                  <li>ORM Doctrine (this instance runs with MySQL)
+                  <li>Twitter Bootstrap</li>
+                  <li>…</li>
+                </ul>
+              </p>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

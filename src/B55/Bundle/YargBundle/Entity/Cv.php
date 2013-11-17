@@ -55,6 +55,13 @@ class Cv
     private $published = false;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="searchable", type="boolean")
+     */
+    private $searchable = false;
+
+    /**
      * @var datetime $created
      *
      * @Gedmo\Timestampable(on="create")
@@ -456,5 +463,28 @@ class Cv
     public function getInformations()
     {
         return $this->informations;
+    }
+
+    /**
+     * Set searchable
+     *
+     * @param boolean $searchable
+     * @return Cv
+     */
+    public function setSearchable($searchable)
+    {
+        $this->searchable = $searchable;
+    
+        return $this;
+    }
+
+    /**
+     * Get searchable
+     *
+     * @return boolean 
+     */
+    public function getSearchable()
+    {
+        return $this->searchable;
     }
 }

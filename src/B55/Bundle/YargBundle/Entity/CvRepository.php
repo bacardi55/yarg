@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class CvRepository extends EntityRepository
 {
+  public function getLastPublishedCvs()
+  {
+      $query = $this->createQueryBuilder('c')
+        ->select('c')
+        ->from('B55YargBundle:Cv', 'cv')
+        ->where('cv.published = 1')
+        ->orderBy('cv.id', 'DESC')
+        ->setMaxResults(5)
+        ->getQuery();
+
+      return $query->getResult();
+  }
 }

@@ -32,7 +32,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ B55YargBundle, FOSUserBundle ]
+    bundles:        [ B55YargBundle, B55YargWebSiteBundle, FOSUserBundle ]
     #java: /usr/bin/java
     filters:
         less:

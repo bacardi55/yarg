@@ -8,8 +8,13 @@ class IndexController extends Controller
 {
     public function indexAction()
     {
+        $lastPublishedCvs = $this->getDoctrine()->getManager()
+            ->getRepository('B55YargBundle:Cv')
+            ->getLastPublishedCvs();
+
         return $this->render(
-            'B55YargWebSiteBundle:Index:index.html.twig', array()
+            'B55YargWebSiteBundle:Index:index.html.twig',
+            array('lastPublishedCvs' => $lastPublishedCvs)
         );
     }
 }
