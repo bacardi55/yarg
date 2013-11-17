@@ -10,8 +10,8 @@ class InformationForm extends AbstractType
    * {@inheritdoc}
    */
   public function buildForm(FormBuilderInterface $builder, array $options) {
-    $builder->add('title', 'text', array('label' => 'yarg.cv.category.information.title'));
-    $builder->add('value', 'textarea', array('label' => 'yarg.cv.category.information.value'));
+    $builder->add('title', 'text', array('label' => 'yarg.my_yarg.cv.category.information.title'));
+    $builder->add('value', 'textarea', array('label' => 'yarg.my_yarg.cv.category.information.value'));
   }
 
   /**

@@ -2,16 +2,16 @@ yarg:
     title: Yarg - Yet Another Resume Generator
     intro: Yarg (Yet Another Resume Generator) is a Cv Generator very simple to use with a read only API to access your data from everywhere.
     homepage: Homepage
-    cv:
-        title: Cv title
-        description: Cv description
-        catch: Cv catch phrase
-        submit: Create this Cv!
-        is_public: Is this Cv public ?
     my_yarg:
         title: My Yarg
         welcome: Welcome!
         cv:
+            title: Cv title
+            description: Cv description
+            catch: Cv catch phrase
+            submit: Create this Cv!
+            is_public: Is this Cv public?
+            is_searchable: Is this Cv searchable?
             intro: This is basic list of your Cv(s). Click the block title to have a detailled view.
             none: You have no Cv.
             create: You can create a new Cv by clicking the button below.
@@ -25,6 +25,7 @@ yarg:
                 error: Your Cv couldn't been edited!
             last_update: Last update:
             category:
+                name: Value:
                 add_link: Add a category
                 add_info_link: Add an information
                 add_subcat_link: Add a sub category
@@ -43,6 +44,8 @@ yarg:
                         success: Information edited successfully.
                         error: Information couldn't be edited!
                     deleted: Information has been deleted.
+                    title: Title:
+                    value: Value:
         profile:
             intro: These are your authentication informations. They are *not* used in any of your Cvs.
             edit: Edit your profile

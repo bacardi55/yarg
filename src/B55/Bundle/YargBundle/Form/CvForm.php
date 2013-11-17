@@ -10,22 +10,22 @@ class CvForm extends AbstractType
    * {@inheritdoc}
    */
   public function buildForm(FormBuilderInterface $builder, array $options) {
-    $builder->add('title', 'text', array('label' => 'yarg.cv.title'));
+    $builder->add('title', 'text', array('label' => 'yarg.my_yarg.cv.title'));
     $builder->add(
       'description',
       'text',
-      array('label' => 'yarg.cv.description', 'required' => false)
+      array('label' => 'yarg.my_yarg.cv.description', 'required' => false)
     );
     $builder->add(
       'catch',
       'text',
-      array('label' => 'yarg.cv.catch', 'required' => false)
+      array('label' => 'yarg.my_yarg.cv.catch', 'required' => false)
     );
     $builder->add(
       'published',
       'checkbox',
       array(
-        'label' => 'yarg.cv.is_public',
+        'label' => 'yarg.my_yarg.cv.is_public',
         'required' => false,
       )
     );
@@ -33,7 +33,7 @@ class CvForm extends AbstractType
       'searchable',
       'checkbox',
       array(
-        'label' => 'yarg.cv.is_searchable',
+        'label' => 'yarg.my_yarg.cv.is_searchable',
         'required' => false,
       )
     );

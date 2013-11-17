@@ -10,7 +10,7 @@ class CategoryForm extends AbstractType
    * {@inheritdoc}
    */
   public function buildForm(FormBuilderInterface $builder, array $options) {
-    $builder->add('name', 'text', array('label' => 'yarg.cv.category.name'));
+    $builder->add('name', 'text', array('label' => 'yarg.my_yarg.cv.category.name'));
   }
 
   /**
