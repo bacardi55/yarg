@@ -12,7 +12,7 @@ body {
   margin: auto;
 }
 
-.view_cv {
+.view_cv.admin {
   padding-bottom: 55px;
 }
 
