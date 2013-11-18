@@ -15,7 +15,7 @@ Incoming features:
 
 You can look at the issue page to see all incoming features.
 
-How to installe ?
+How to install ?
 =================
 
 First, install [composer](http://getcomposer.org) if you don't have it yet.
