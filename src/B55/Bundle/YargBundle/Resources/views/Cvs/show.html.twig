@@ -2,7 +2,7 @@
 {% set active = 'my_yarg' %}
 
 {% block content %}
-  <div class="row view_cv">
+  <div class="row view_cv{% if authenticated %} admin{% endif %}">
     {# User infos #}
     <div class="span10 offset1">
       {% for cv_info in cv.informations %}
@@ -30,7 +30,7 @@
         {{ cv.catch }}
     </div>
   </div>
-  <div class="row view_cv">
+  <div class="row view_cv{% if authenticated %} admin{% endif %}">
       {% for category in cv.categories %}
         {% if category.parent is null %}
           <div class="span10 offset1">
