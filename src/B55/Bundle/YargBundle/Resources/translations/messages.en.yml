@@ -2,6 +2,8 @@ yarg:
     title: Yarg - Yet Another Resume Generator
     intro: Yarg (Yet Another Resume Generator) is a Cv Generator very simple to use with a read only API to access your data from everywhere.
     homepage: Homepage
+    provided_by_yarg: Powered by
+    liscence: under liscence MIT
     my_yarg:
         title: My Yarg
         welcome: Welcome!

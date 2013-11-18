@@ -1,4 +1,17 @@
 yargws:
     title: Yarg - Yet Another Resume Generator
     intro: Yarg (Yet Another Resume Generator) is an opensource Cv Generator very simple to use with a read only API to access your data from everywhere.
+    disclaimer: Yarg is still in very early phase but is still in heavy development.
     learn_more: Learn more!
+    description:
+        main_features: Main features:
+        opensource: Open source
+        multiusers: Multi Users
+        multicvs: Multi Cvs per users
+        i18n: i18n (only english translation for now)
+        publish_ch: Publish your CV
+        more_to_come: A lot more to come, follow
+        roadmap: the roadmap
+    last_published_cvs: Last published CVs:
+    no_published_cv: No published Cv yet
+    run_with: Runs with:

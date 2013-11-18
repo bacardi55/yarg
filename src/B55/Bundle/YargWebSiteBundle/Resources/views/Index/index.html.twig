@@ -21,28 +21,28 @@
         <ul class="thumbnails">
           <li class="span4">
             <div class="thumbnail">
-              <h3>Main features:</h3>
+              <h3>{{ 'yargws.description.main_features'|trans }}</h3>
               <p>
                 <ul>
-                  <li>Open source</li>
-                  <li>Multi Users</li>
-                  <li>Multi Cvs per users</li>
-                  <li>i18n (only english translation for now)</li>
-                  <li>Publish your CV <icon class="icon-question-sign"></i></li>
-                  <li>A lot more to come, follow <a href="https://lab.bacardi55.org/bacardi55/yarg/issues">the roadmap</a></li>
+                  <li>{{ 'yargws.description.opensource' | trans }}</li>
+                  <li>{{ 'yargws.description.multiusers' | trans }}</li>
+                  <li>{{ 'yargws.description.multicvs' | trans }}</li>
+                  <li>{{ 'yargws.description.i18n' | trans }}</li>
+                  <li>{{ 'yargws.description.publish_ch' | trans }} <icon class="icon-question-sign"></i></li>
+                  <li>{{ 'yargws.description.more_to_come' | trans}} <a href="https://lab.bacardi55.org/bacardi55/yarg/issues">{{ 'yargws.description.roadmap' | trans }}</a></li>
                 </ul>
               </p>
             </div>
           </li>
           <li class="span4">
             <div class="thumbnail">
-              <h3>Last published CVs:</h3>
+              <h3>{{ 'yargws.last_published_cvs' | trans }}</h3>
               <p>
                 <ul>
                   {% for cv in lastPublishedCvs %}
                     <li><a href="{{ path('yarg_show_public_cv', {'user_slug': cv.user.usernamecanonical, 'cv_slug': cv.slug}) }}">{{ cv.title }}</a> by {{ cv.user.username }}</li>
                   {% else %}
-                    <li>No published Cv yet</li>
+                    <li>{{ 'yargws.no_published_cv' | trans }}</li>
                   {% endfor %}
                 </ul>
               </p>
@@ -50,7 +50,7 @@
           </li>
           <li class="span4">
             <div class="thumbnail">
-              <h3>Runs with:</h3>
+              <h3>{{ 'yargws.run_with' | trans }}</h3>
               <p>
                 <ul>
                   <li>PHP >= 5.3</li>
