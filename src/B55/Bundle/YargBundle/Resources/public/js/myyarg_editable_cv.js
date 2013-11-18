@@ -14,11 +14,8 @@ $(document).ready(function() {
       $(this).data('modal', null);
     });
 
-    $('#yargAddModal').on('show', function(a,b,c) {
-      console.log(a);
-      console.log(b);
-      console.log(c);
-
+    $('#yargAddModal').on('shown', function(a,b,c) {
+        $("#yargAddModal :input:text").first().focus();
     });
   }
 
